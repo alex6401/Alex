@@ -1,4 +1,4 @@
-# MinChan's Archive
+# 사회·역사 기록 저장소
 
 HTML 웹앱을 카드로 모아 여는 GitHub Pages용 마스터페이지입니다.
 
