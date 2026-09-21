@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="중학교 사회 수업을 위한 오프라인 교사 진행형 모의선거">
+<title>우리 반 모의선거 LAB</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23dfff00'/%3E%3Cpath d='m7 16 6 6L25 9' fill='none' stroke='%2316191d' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+/* 전자칠판 화면 / 외부 폰트·이미지·라이브러리 없음 */
+:root{--ink:#181b20;--paper:#f3f4ef;--white:#fff;--lime:#dfff00;--blue:#315bdc;--muted:#58606a;--line:3px solid var(--ink)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-size:24px;line-height:1.45;word-break:keep-all}button{font:inherit;color:inherit;cursor:pointer;border:var(--line);background:white;min-height:52px;padding:8px 18px;font-weight:700;border-radius:0;touch-action:manipulation}button:hover:not(:disabled){background:var(--lime)}button:active:not(:disabled){transform:translate(2px,2px)}button:disabled{cursor:default;color:#737982;border-color:#aab0b5;background:#e7e9e5}button:focus-visible{outline:4px solid var(--blue);outline-offset:4px}.primary{background:var(--lime);box-shadow:4px 4px 0 var(--ink)}.dark{background:var(--ink);color:#fff}.dark:hover:not(:disabled){color:var(--ink)}.small{font-size:15px}.subtle{color:var(--muted)}.mono{font-family:Consolas,monospace;font-weight:700;letter-spacing:.04em}.eyebrow{font-size:16px;font-weight:800;letter-spacing:.12em}.app{height:100dvh;min-height:700px;display:flex;flex-direction:column;padding:0 40px}.topbar{display:flex;align-items:center;gap:22px;min-height:74px;border-bottom:var(--line)}.brand{font-size:22px;font-weight:900;white-space:nowrap}.brand b{background:var(--ink);color:var(--lime);padding:4px 8px;margin-left:7px}.course{font-size:15px;border-left:1px solid #8b9093;padding-left:22px}.topright{margin-left:auto;display:flex;align-items:center;gap:18px}.timers{font-size:13px;text-align:right;line-height:1.6;min-width:158px}.timers b{font-size:18px;margin-left:10px}.topbar button{font-size:15px;min-height:52px;padding:6px 12px}.progress{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;padding:16px 0 0}.step{height:6px;background:#d5d8d2}.step.past{background:var(--ink)}.step.current{background:var(--blue)}main{flex:1;min-height:0;display:flex;flex-direction:column;padding:22px 0;gap:18px;position:relative}.heading{display:flex;justify-content:space-between;align-items:center;gap:20px}.heading h1{font-size:48px;letter-spacing:-.06em;line-height:1.15;margin:5px 0 0;font-weight:900}.phase-code{color:var(--blue);font-size:15px;font-weight:900;letter-spacing:.12em}.time-budget{font-size:15px;border:2px solid var(--ink);padding:7px 12px;white-space:nowrap}.content{flex:1;min-height:0;display:flex;flex-direction:column;gap:18px}.question{font-size:36px;line-height:1.3;font-weight:800;letter-spacing:-.045em;margin:0}.question.big{font-size:clamp(42px,3.8vw,70px)}.strip{border:var(--line);padding:16px 22px;background:white}.strip.lime{background:var(--lime)}.strip.dark{background:var(--ink);color:white}.row{display:flex;gap:18px;align-items:center}.spread{justify-content:space-between}.grid{display:grid;gap:18px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}.card{border:var(--line);background:white;padding:20px;position:relative;min-width:0}.card.selected{background:var(--lime);box-shadow:5px 5px 0 var(--ink)}.card h2{font-size:30px;line-height:1.3;margin:12px 0;letter-spacing:-.04em}.card p{font-size:24px;margin:10px 0}.badge{font-size:16px;font-weight:800;display:inline-block;border:2px solid var(--ink);padding:3px 9px;background:var(--paper)}.number{font-size:64px;font-weight:900;line-height:1}.big-number{font-size:clamp(90px,10vw,180px);letter-spacing:-.08em;line-height:1;font-weight:900}.mission{display:grid;grid-template-columns:1.55fr 1fr;flex:1;gap:28px}.mission-copy{display:flex;flex-direction:column;justify-content:center;gap:25px}.mission-copy h2{font-size:clamp(48px,4.8vw,88px);line-height:1.18;letter-spacing:-.065em;margin:0}.mission-board{background:var(--lime);border:var(--line);box-shadow:8px 8px 0 var(--ink);display:flex;flex-direction:column;padding:30px;justify-content:space-between}.mission-board .board-label{border-bottom:var(--line);padding-bottom:16px}.mission-board p{font-size:28px;font-weight:700;margin:16px 0 0}.mission-bottom{border-top:var(--line);padding-top:16px;font-size:22px}.response-card{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;border:var(--line);background:white;padding:18px 22px}.response-card h2{margin:0;font-size:28px}.letter{font-size:44px;font-weight:900}.counts{display:flex;gap:8px;align-items:center}.counts button{min-width:58px;padding:6px 10px}.hidden-count{font-size:16px;color:var(--muted);min-width:68px;text-align:center}.chart{display:grid;gap:12px}.chart-row{display:grid;grid-template-columns:95px 1fr 110px;align-items:center;gap:15px}.chart-label{font-size:22px;font-weight:700}.track{height:34px;background:#e4e7e0;border:2px solid var(--ink)}.bar{height:100%;background:var(--blue);transition:width .25s ease}.chart-value{font-size:30px;font-weight:900;text-align:right}.chart-value strong{font-size:60px}.result-in{animation:appear .3s ease both}.criteria{display:flex;gap:12px;flex-wrap:wrap}.criteria button{font-size:24px}.criteria .selected{background:var(--lime);box-shadow:3px 3px 0 var(--ink)}.rule{min-height:144px;text-align:left;font-weight:400}.rule strong{display:block;font-size:26px;margin-top:10px}.rule .problem{font-size:24px;color:var(--ink);border-top:2px solid var(--ink);padding-top:12px;margin:12px 0 0}.locked{background:#e6e8e2;display:flex;flex-direction:column;justify-content:center;gap:10px;color:#616873;border:2px dashed #959c9e}.locked .lock-label{font-size:20px}.principle h2{font-size:36px;color:var(--blue)}.principle .origin{font-size:24px;border-bottom:2px solid #c7cbc5;padding-bottom:12px}.principle p{line-height:1.55}.quiz-box{border:var(--line);background:white;padding:28px;display:flex;flex-direction:column;gap:24px;flex:1;justify-content:center}.quiz-options{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.quiz-option{border:2px solid var(--ink);padding:14px;font-size:26px;font-weight:800;background:var(--paper)}.quiz-option.correct{background:var(--lime)}.polling{display:flex;flex:1;flex-direction:column;justify-content:center;align-items:center;background:var(--ink);color:white;border:var(--line);gap:22px;text-align:center}.polling h2{font-size:70px;margin:0;letter-spacing:-.05em}.polling .status{color:var(--lime);font-size:20px;letter-spacing:.1em}.principle-tags .card{padding:14px 18px;text-align:center;font-weight:800}.tally-card .number{font-size:80px;margin:10px 0;display:block}.tally-card .counts{justify-content:space-between}.tally-card .track{margin:18px 0}.tally-card.winner{background:var(--lime);box-shadow:5px 5px 0 var(--ink)}.result-banner{font-size:28px;font-weight:900}.reflection{flex:1;display:flex;flex-direction:column;justify-content:center;gap:25px;padding:25px 38px;border:var(--line);background:white}.concept{font-size:30px;border-left:8px solid var(--blue);padding:14px 22px;background:#eef1fb}.concept strong{font-size:40px;display:block}.definition{background:var(--lime);border:var(--line);padding:22px 28px;font-size:36px;font-weight:800;line-height:1.4}.function-card{min-height:146px;text-align:left;font-size:26px;display:flex;flex-direction:column;gap:14px;font-weight:700}.function-card span{font-size:16px;letter-spacing:.08em}.comparison{display:grid;grid-template-columns:1fr auto 1fr;gap:25px;align-items:center;flex:1}.comparison .card{height:100%;display:flex;flex-direction:column;justify-content:center;padding:35px}.comparison h2{font-size:64px}.comparison p{font-size:36px}.center{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:24px}.center h2{font-size:64px;margin:0}.footer{border-top:var(--line);padding:12px 0 14px;position:relative}.control-row{display:flex;justify-content:space-between;align-items:center;gap:12px}.navigation{display:flex;gap:12px}.navigation button{min-width:132px}.navigation .primary{min-width:212px}.tools{display:flex;gap:8px}.tools button{font-size:15px;padding:7px 12px}.footer-meta{font-size:13px;display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)}.note{position:absolute;bottom:100%;left:0;max-width:680px;background:#fff7c6;border:var(--line);padding:18px 22px;box-shadow:5px -5px 0 #181b2020;z-index:5;font-size:18px}.note p{margin:6px 0}.toast{position:fixed;left:50%;bottom:126px;transform:translateX(-50%);background:var(--ink);color:white;padding:10px 22px;font-size:18px;border:2px solid white;z-index:20;pointer-events:none}.storage-warning{position:fixed;top:0;left:50%;transform:translateX(-50%);background:#fff1b8;padding:7px 15px;font-size:15px;z-index:25}dialog{max-width:600px;width:90%;border:var(--line);padding:32px;box-shadow:8px 8px 0 var(--ink);background:var(--paper)}dialog::backdrop{background:#181b20aa}dialog h2{font-size:32px;margin-top:0}dialog p{font-size:24px}dialog .row{justify-content:flex-end} [hidden]{display:none!important}
+@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1600px) and (min-height:900px){.app{padding:0 56px}.topbar{min-height:88px}main{padding:32px 0;gap:26px}.content{gap:26px}.heading h1{font-size:56px}.card{padding:28px}.card h2{font-size:36px}.card p{font-size:28px}.rule{min-height:160px}.rule strong{font-size:32px}.function-card{min-height:190px}.question{font-size:42px}.footer{padding:20px 0}.navigation button{min-height:60px}.response-card{padding:25px}.quiz-box{padding:45px}}
+@media(max-height:820px) and (min-width:1100px){.app{padding:0 28px}.topbar{min-height:64px}.progress{padding-top:10px}main{padding:15px 0;gap:12px}.content{gap:12px}.card{padding:15px}.card h2{font-size:27px;margin:8px 0}.card p{margin:7px 0}.heading h1{font-size:48px}.question{font-size:36px}.rule{min-height:133px}.rule strong{font-size:24px}.rule .problem{margin-top:8px;padding-top:8px}.principle h2{font-size:32px}.strip{padding:12px 18px}.response-card{padding:12px 18px}.quiz-box{padding:20px;gap:18px}.function-card{min-height:130px;font-size:24px}.definition{font-size:32px;padding:15px 22px}.mission-copy{gap:18px}.footer{padding:10px 0}.tally-card .number{font-size:70px}.tally-card .track{margin:12px 0}}
+@media(max-width:1099px){.app{height:auto;min-height:100dvh;padding:0 18px}.topbar{flex-wrap:wrap;padding:12px 0;gap:10px}.course{display:none}.topright{gap:8px}.timers{display:none}.heading h1{font-size:42px}main{min-height:560px}.mission,.three,.four{grid-template-columns:1fr 1fr}.mission{display:flex;flex-direction:column}.mission-copy h2{font-size:48px}.mission-board{min-height:220px;box-shadow:4px 4px 0 var(--ink)}.mission-board .big-number{font-size:90px}.two,.quiz-options{grid-template-columns:1fr 1fr}.question{font-size:32px}.control-row{flex-wrap:wrap}.navigation{flex-wrap:wrap}.footer-meta{gap:12px}.comparison .card{padding:20px}.comparison h2{font-size:42px}.comparison p{font-size:28px}.rule{min-height:155px}}
+@media(max-width:640px){.brand{font-size:18px}.topright{margin-left:0}.two,.three,.four,.quiz-options{grid-template-columns:1fr}.heading{align-items:flex-start}.heading h1{font-size:36px}.time-budget{font-size:12px}.response-card{grid-template-columns:auto 1fr}.response-card .counts{grid-column:2}.comparison{grid-template-columns:1fr}.comparison>span{text-align:center}.navigation button,.navigation .primary{min-width:0;font-size:18px}.tools{flex-wrap:wrap}.question.big{font-size:38px}.chart-row{grid-template-columns:70px 1fr 65px}.polling h2{font-size:46px}}
+.rule:disabled{background:white;color:var(--ink);border:var(--line)}.counts>b{font-size:60px;line-height:1}.chart-label{font-size:24px}.mission-bottom{font-size:24px}
+.chart.compact{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.chart.compact .chart-row{grid-template-columns:42px 1fr 82px;gap:10px}.quiz-box>p{margin:0}
+@media(max-height:820px) and (min-width:1100px){.quiz-box{padding:16px;gap:12px}.quiz-box .question.big{font-size:42px;line-height:1.25}.quiz-box .concept{font-size:26px;padding:10px 16px}.quiz-option{padding:10px}.principle p{line-height:1.4}.principle .origin{min-height:80px}.content>.strip:last-child{flex-shrink:0}}
+.chart-value{line-height:1}.chart-value small{font-size:24px}.chart.compact .chart-row{grid-template-columns:42px 1fr 112px}
+main[data-phase="1"][data-revealed="true"] .content>p.question{display:none}
+main[data-phase="6"][data-done="true"] .content>.row:first-child .question{font-size:28px}
+@media(max-height:820px) and (min-width:1100px){.rule{min-height:100px;padding:12px}.rule strong{margin-top:6px}.polling{gap:12px}.polling p{margin:0}.polling h2{font-size:60px}.principle-tags .card{padding:10px}.reflection{gap:16px;padding:20px 28px}.reflection .question.big{font-size:46px}.center{gap:16px}.center h2{font-size:52px;line-height:1.25}.center p{margin:8px 0}main[data-phase="2"] .card{padding:12px}.tally-card .number{margin:6px 0}.tally-card .track{margin:8px 0}}
+@media(max-width:1099px){.chart.compact{grid-template-columns:1fr}}
+.preview-bridge{display:flex;flex:1;flex-direction:column;justify-content:center;gap:28px;max-width:1400px}.preview-bridge .question{max-width:1250px}.preview-actors{flex:1}.preview-actors .card{display:flex;flex-direction:column;justify-content:center;gap:12px}.preview-actors h2{font-size:48px;margin:0}.preview-actors p{font-size:36px;line-height:1.4;margin:0}.preview-topic{flex:1;border:var(--line);background:var(--lime);padding:30px 36px;display:flex;flex-direction:column;justify-content:center;gap:28px}.preview-topic h2{font-size:clamp(40px,3.5vw,64px);line-height:1.3;letter-spacing:-.045em;margin:0;max-width:1400px}.preview-timeline{display:flex;gap:22px;align-items:center;font-size:26px;font-weight:700;border-top:2px solid var(--ink);padding-top:20px}.preview-timeline span{border:2px solid var(--ink);padding:8px 20px;background:white}
+@media(max-height:820px) and (min-width:1100px){.preview-bridge{gap:22px}.preview-actors .card{padding:18px;gap:10px}.preview-actors h2{font-size:42px}.preview-actors p{font-size:32px}.preview-topic{padding:20px 28px;gap:20px}.preview-topic h2{font-size:46px}.preview-timeline{padding-top:15px}}
+@media(max-width:640px){.preview-topic{padding:20px}.preview-topic h2{font-size:36px}.preview-timeline{gap:8px;font-size:24px;flex-wrap:wrap}.preview-timeline span{padding:6px}.preview-actors h2{font-size:36px}.preview-actors p{font-size:28px}}
+.preview-today{font-size:28px;margin:12px 0 0}.textbook-actors ul{padding-left:1.2em;margin:0;display:grid;gap:10px;font-size:28px;line-height:1.4}.textbook-actors li::marker{color:var(--blue)}.preview-scope{display:grid;grid-template-columns:1fr 1.5fr;gap:22px;border-top:2px solid var(--ink);padding-top:20px;font-size:26px}.preview-scope span{display:flex;gap:16px;align-items:center}.preview-scope b{white-space:nowrap;border:2px solid var(--ink);background:white;padding:8px 14px}
+@media(max-height:820px) and (min-width:1100px){.textbook-actors ul{font-size:24px;gap:8px}.textbook-actors .card{gap:12px}.preview-scope{font-size:24px;gap:14px}.preview-today{font-size:26px}}
+@media(max-width:1099px){.textbook-actors ul{font-size:24px}.preview-scope{grid-template-columns:1fr}.preview-scope span{flex-wrap:wrap}}
+/* 학생용 가독성: 짧은 문장, 일정한 후보 카드 정렬, 공개 전 숫자 자리 제거 */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.response-card{grid-template-columns:auto minmax(0,1fr) auto}.response-card h2{font-size:32px;line-height:1.3;letter-spacing:-.035em}.response-card .counts{gap:10px}
+.scenario{display:flex;gap:24px;justify-content:space-between;align-items:center}.scenario p{margin:6px 0 0;font-size:24px}.scenario-budget{flex-shrink:0;border-left:2px solid var(--ink);padding-left:28px;display:flex;flex-direction:column}.scenario-budget span{font-size:24px}.scenario-budget strong{font-size:48px;line-height:1.3;white-space:nowrap}
+.candidate{display:flex;flex-direction:column}.candidate .badge{align-self:flex-start}.candidate h2{min-height:2.6em}.candidate p{margin:6px 0}.candidate .candidate-budget{font-size:24px}.candidate-budget strong{font-size:32px}.candidate .candidate-plan{font-size:24px}.candidate .candidate-detail{min-height:2.8em;padding-top:10px;border-top:1px solid #a6aca4;font-size:24px}.candidate-controls{margin-top:auto;display:flex;justify-content:flex-end;padding-top:10px}.principle-tags .small{font-size:24px;color:var(--ink)}.note{max-height:55vh;overflow:auto}
+@media(max-height:820px) and (min-width:1100px){.response-card h2{font-size:28px}.scenario{padding:12px 18px}.scenario p{margin-top:4px}.candidate h2{font-size:27px;min-height:2.6em}.candidate .candidate-detail{min-height:2.8em;padding-top:6px}.candidate-controls{padding-top:6px}.candidate p{margin:4px 0}.principle-tags .card{font-size:24px}}
+@media(max-width:1099px){.scenario{align-items:flex-start}.scenario-budget strong{font-size:36px}.candidate h2{min-height:0}.candidate .candidate-detail{min-height:0}.response-card h2{font-size:28px}}
+@media(max-width:640px){.scenario{flex-direction:column}.scenario-budget{border-left:0;padding-left:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+ <header class="topbar"><div class="brand">우리 반 모의선거 <b>LAB</b></div><div class="topright"><div class="timers" id="timers"><div>PHASE 진행 <b id="phaseTime" class="mono">00:00</b></div><div>전체 진행 <b id="totalTime" class="mono">00:00</b></div></div><button data-action="timer" id="timerToggle">타이머 숨기기</button><button data-action="fullscreen" id="fullscreen">전체 화면 ↗</button></div></header>
+ <div class="progress" id="progress" aria-label="수업 진행 단계"></div>
+ <main id="main"></main>
+ <footer class="footer"><aside class="note" id="note" hidden></aside><div class="control-row"><div class="tools"><button data-action="note" id="noteToggle" aria-expanded="false">교사 메모</button><button data-action="resetPhase">현재 PHASE 초기화</button><button data-action="restart">전체 수업 다시 시작</button></div><div class="navigation"><button id="prev" data-action="prev">◀ 이전</button><button id="reveal" class="primary" data-action="reveal">시작 →</button><button id="next" data-action="next">다음 ▶</button></div></div></footer>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+<div id="storageWarning" class="storage-warning" role="status" hidden>임시 저장을 사용할 수 없습니다. 이 창을 닫거나 새로고침하지 마세요.</div>
+<dialog id="resetDialog" aria-labelledby="resetTitle"><h2 id="resetTitle">전체 수업을 다시 시작할까요?</h2><p>집계한 숫자와 공개 상태, 진행 시간이 모두 초기화됩니다.</p><div class="row"><button data-action="cancelReset" autofocus>취소</button><button class="primary" data-action="confirmReset">다시 시작</button></div></dialog>
+<script>
+'use strict';
+// ============================================================
+// 1. 수업 콘텐츠 수정 영역
+// ============================================================
+// 여기만 수정하면 됩니다. 후보는 3명으로 유지해 주세요.
+const candidates = [
+ {name:'기호 1번',title:'학급 보드게임 카페 개설',budget:'30만 원',detail:'남은 예산 사용할 곳 미정'},
+ {name:'기호 2번',title:'월1회 단합대회',budget:'50만 원',detail:'담임선생님은 아직 모르고 있음'},
+ {name:'기호 3번',title:'매주 금요일 간식',budget:'80만 원',detail:'부족한 예산은 사비로 충당'}
+];
+// 여기만 수정하면 됩니다. 실제 학교 예산이 아닌 수업용 가상 상황입니다.
+const scenario = {
+ budget:'50만 원',
+ context:'우리 반이 함께 쓸 학급자치 활동비가 생겼습니다.',
+ role:'친구들의 의견을 모아 선생님과 협의할 학급 대표를 뽑습니다.'
+};
+// 여기만 수정하면 됩니다. answer는 0 보통 / 1 평등 / 2 직접 / 3 비밀입니다.
+const quizQuestions = [
+ {question:'성적이 좋은 학생은 2표를 행사한다.',answer:1,explanation:'사람마다 행사하는 표의 수가 달라집니다.'},
+ {question:'결석한 친구 대신 투표한다.',answer:2,explanation:'유권자 본인이 자신의 표를 행사해야 합니다.'},
+ {question:'투표지에 학번과 이름을 쓴다.',answer:3,explanation:'학번과 이름으로 누가 누구에게 투표했는지 알 수 있습니다.'},
+ {question:'전학 온 지 얼마 안 된 학생은 투표할 수 없다.',answer:0,explanation:'일부 학생에게만 투표할 기회를 주고 있습니다.'}
+];
+// 여기만 수정하면 됩니다. 메모는 교사 메모 버튼을 눌러야 표시됩니다.
+const teacherQuestions = [
+ '종이 모의투표지와 투표함을 준비하세요. 핵심 질문: 선거는 단순히 한 명을 뽑는 것일까?',
+ '활동비 50만 원은 수업용 가정입니다. 학급 대표는 활동비를 혼자 쓰는 사람이 아니라, 학급의 의견을 모아 선생님과 협의하는 사람입니다. 왜 정보가 필요할까? 예상 답: 공약, 능력, 실현 가능성. 손든 인원을 +1 / −1로 반영합니다. 공개 전 숫자는 숨겨집니다.',
+ '활동비는 총 50만 원입니다. 1번: 필요 예산 30만 원, 남은 20만 원의 사용 계획은 미정입니다. 2번: 필요 예산 50만 원, 담임교사와 일정·운영을 협의하지 않은 상태입니다. 3번: 필요 예산 80만 원, 부족한 30만 원을 사비로 부담한다는 약속입니다. 학생들에게 남은 예산의 활용, 사전 협의, 사비 부담의 실현 가능성과 지속 가능성을 질문하세요. 특정 후보를 정답으로 정하지 말고 선택의 근거를 들어 보세요.',
+ '결과가 마음에 안 들어서가 아니라 과정 자체에서 무엇이 문제인가? 결과 공개 뒤 RULE을 눌러 문제점만 보여 주세요.',
+ '네 원칙이 없다면 어떤 문제가 생길까? 앞의 손들기는 의견 확인 활동이고, 비밀 선거를 지킨 실제 모의투표는 아닙니다. 직접 선거는 유권자가 중간 선거인을 거치지 않고 대표자를 직접 선출한다는 뜻도 연결해 주세요.',
+ '각자 한 장씩 배부하고 가림 공간에서 한 후보를 표시하게 하세요. 누구의 표인지 드러나지 않도록 투표지에 학번과 이름은 쓰지 않게 안내하세요. 기권·무효표 판단 기준과 동점 시 처리 방법을 미리 합의하세요.',
+ '가장 많은 표를 얻었다는 것만으로 대표가 되는 것일까? 절차도 중요하지 않을까? 투표지 수와 집계 합계를 대조하세요. 동점이면 자동 당선자는 없으며, 합의한 방식으로 재투표할 수 있습니다.',
+ '교과서 185~186쪽을 바탕으로 한 차시 예고입니다. ① 오늘의 공약 비교·선택 경험에서 투표 외의 참여로 질문을 넓힙니다. ② 185쪽 유권자: 공보·벽보·정책 토론회 등을 통한 공약 비교, 자질·능력 판단, 적극적 투표, 캠페인·정책 제안 등 건전한 선거 문화 활동. 186쪽 정당: 후보 추천, 국민 의견을 반영한 정책·공약 제시, 정책 홍보·지지 호소, 국민의 관심·참여 유도. 구체적인 설명과 사례 조사는 다음 차시에 진행합니다. ③ 차시 주제를 공개하며 마칩니다. 학생 반응은 희망자의 짧은 구두 응답으로 받습니다.'
+];
+// 여기만 수정하면 됩니다.
+const rules = [
+ {text:'성적 상위 10명만 투표할 수 있다.',problem:'일부 학생에게만 투표할 기회가 주어졌다.'},
+ {text:'반장은 3표, 다른 학생은 1표를 행사한다.',problem:'사람마다 행사하는 표의 수가 다르다.'},
+ {text:'결석한 친구의 표를 대신 투표할 수 있다.',problem:'자신의 표를 다른 사람이 대신 행사한다.'},
+ {text:'투표지에 학번과 이름을 쓴다.',problem:'누가 누구에게 투표했는지 알 수 있다.'}
+];
+// 여기만 수정하면 됩니다.
+const principles = [
+ {name:'보통 선거',origin:'일부 학생만 투표',description:'일정한 나이 이상의 국민에게 성별·재산·학력 등에 관계없이 선거권을 주는 원칙'},
+ {name:'평등 선거',origin:'사람마다 표의 수가 다름',description:'각 사람이 행사하는 표의 수와 가치가 같아야 하는 원칙'},
+ {name:'직접 선거',origin:'다른 사람이 대신 투표',description:'유권자가 자신의 표를 직접 행사하는 원칙'},
+ {name:'비밀 선거',origin:'투표지에 학번·이름을 씀',description:'누구에게 투표했는지 다른 사람이 알 수 없도록 하는 원칙'}
+];
+const phaseTitles=['오늘의 미션','지금 바로 투표할까?','후보자를 판단하라','이 선거, 공정한가?','선거의 4원칙을 찾아라','진짜 모의선거','개표','다음 시간에는?'];
+const phaseMinutes=['1분','3분','5분','4분','6분','4분','3~4분','3~4분'];
+const criteria=['실현 가능성','구체성','학생들에게 필요한가?'];
+// 여기만 수정하면 됩니다. PHASE 07은 정답 정리 대신 다음 차시 질문을 예고합니다.
+const nextLesson = {
+ topic:'선거과정에서 유권자와 정당은 어떤 활동을 할까?',
+ bridge:'투표만 하면 유권자의 역할은 끝일까?',
+ today:'후보자의 공약을 비교하고, 대표를 선택했어요.',
+ voterQuestions:['공약은 어떤 자료로 비교할까?','후보자의 자질과 능력은 어떻게 살필까?','왜 투표에 적극적으로 참여해야 할까?','건전한 선거 문화를 위해 무엇을 할까?'],
+ partyQuestions:['선거에 나갈 후보자는 어떻게 추천할까?','국민의 의견을 공약에 어떻게 담을까?','정책을 알리고 지지를 얻는 방법은?','국민의 관심과 참여를 어떻게 이끌까?'],
+ invitation:'다음 시간에는 실제 사례에서 두 주체의 활동을 찾아봅니다.'
+};
+
+// ============================================================
+// 2. 상태 관리 — 수업 데이터만 저장, 개인정보 없음
+// ============================================================
+// 후보와 상황이 바뀌었으므로 이전 후보의 득표를 새 후보에게 적용하지 않습니다.
+const STORAGE_KEY='class-election-lab-v2-classroom';
+function freshPhase(p){
+ if(p===1)return {counts:[0,0],revealed:false};
+ if(p===2)return {counts:[0,0,0],revealed:false,criteria:[false,false,false]};
+ if(p===3)return {counts:[0,0],revealed:false,rules:0,problems:[false,false,false,false]};
+ if(p===4)return {cards:0,mode:'cards',quiz:0,answers:Array(quizQuestions.length).fill(false)};
+ if(p===5)return {closed:false};
+ if(p===6)return {counts:[0,0,0],invalid:0,done:false,question:0,concepts:[false,false]};
+ if(p===7)return {previewRevision:2,step:0,ended:false};
+ return {};
+}
+function freshState(){return {version:1,phase:0,phases:Array.from({length:8},(_,i)=>freshPhase(i)),phaseElapsed:Array(8).fill(0),totalElapsed:0,timerVisible:true};}
+let state=freshState(),noteOpen=false,lastTick=Date.now(),storageAvailable=true,toastTimeout;
+const $=id=>document.getElementById(id);
+const esc=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const current=()=>state.phases[state.phase];
+const pad=n=>String(n).padStart(2,'0');
+const formatTime=ms=>`${pad(Math.floor(ms/60000))}:${pad(Math.floor(ms/1000)%60)}`;
+function tick(){const now=Date.now(),delta=Math.max(0,now-lastTick);lastTick=now;if(!state.phases[7].ended){state.totalElapsed+=delta;state.phaseElapsed[state.phase]+=delta;}updateTimers();}
+function updateTimers(){$('phaseTime').textContent=formatTime(state.phaseElapsed[state.phase]);$('totalTime').textContent=formatTime(state.totalElapsed);}
+
+// ============================================================
+// 3. 화면 렌더링 — 공개 전 정답과 숫자는 DOM에도 넣지 않음
+// ============================================================
+function controls(group,i,visible=false){const value=current().counts[i];return `<div class="counts"><button data-action="count" data-index="${i}" data-delta="-1" aria-label="${esc(group)} 1명 빼기">−1</button>${visible?`<b>${value}</b>`:''}<button data-action="count" data-index="${i}" data-delta="1" aria-label="${esc(group)} 1명 더하기">+1</button></div>`;}
+function response(labels){return `<div class="grid two">${labels.map((label,i)=>`<div class="response-card"><span class="letter">${String.fromCharCode(65+i)}</span><h2>${state.phase===1?(i===0?'지금 투표해도<br>된다':'정보가 더<br>필요하다'):esc(label)}</h2>${controls(label,i)}</div>`).join('')}</div>`;}
+function chart(labels,counts){const total=counts.reduce((a,b)=>a+b,0);return `<div class="chart result-in${state.phase===2?' compact':''}" aria-label="학급 의견 집계">${labels.map((label,i)=>`<div class="chart-row"><span class="chart-label">${esc(label)}</span><div class="track"><div class="bar" style="width:${total?counts[i]/total*100:0}%"></div></div><span class="chart-value"><strong>${counts[i]}</strong><small>명</small></span></div>`).join('')}</div>`;}
+function candidatesView(){return `<div class="grid three candidates">${candidates.map((c,i)=>`<article class="card candidate"><span class="badge">${esc(c.name)}</span><h2>${esc(c.title)}</h2><p class="candidate-budget">필요 예산 <strong>${esc(c.budget)}</strong></p><p class="candidate-detail">${esc(c.detail)}</p><div class="candidate-controls">${controls(c.name,i)}</div></article>`).join('')}</div>`;}
+function lockedCard(i,label='생각한 뒤 공개'){return `<div class="card locked"><span class="eyebrow">${pad(i+1)}</span><span class="lock-label">${label}</span></div>`;}
+function phaseView(){const s=current();switch(state.phase){
+ case 0:return `<div class="mission"><div class="mission-copy"><span class="eyebrow">오늘의 선택</span><h2>우리 반을 대표할<br>한 사람을 선택하라.</h2><p class="question">그냥 가장 인기 있는 사람을<br>뽑으면 되는 걸까?</p><span class="subtle">생각하고 · 비교하고 · 선택하기</span></div><div class="mission-board"><div class="board-label eyebrow">우리 반의 선택</div><div><span class="big-number">01</span><p>우리가 선택할 대표</p></div><div class="mission-bottom">선거는 단순히<br><strong>한 명을 뽑는 것일까?</strong></div></div></div>`;
+ case 1:return `<div class="strip scenario"><div class="scenario-copy"><span class="badge">가상 상황 · 학급 대표 선거</span><p>${esc(scenario.context)}</p><p>${esc(scenario.role)}</p></div><div class="scenario-budget"><span>전체 예산</span><strong>${esc(scenario.budget)}</strong></div></div><p class="question">후보자에 대해 아무 정보도 없는 지금,<br>바로 투표해도 될까?</p>${response(['지금 투표해도 된다','정보가 더 필요하다'])}${s.revealed?chart(['A · 지금','B · 정보'],s.counts)+'<div class="strip lime question">대표자를 선택하기 전에 어떤 정보를 알아야 할까?</div>':'<div class="strip subtle">대표를 고르기 전에 무엇을 알아야 할까요?</div>'}`;
+ case 2:return `${!s.revealed?'<div class="row spread"><p class="question">누구의 공약이 가장 설득력 있나요?</p><span class="badge">전체 예산 '+esc(scenario.budget)+'</span></div>':''}${candidatesView()}${s.revealed?`${chart(candidates.map((_,i)=>`${i+1}번`),s.counts)}<div class="row spread"><p class="question">어떤 기준으로 선택했나요?</p><div class="criteria">${criteria.map((c,i)=>`<button data-action="criterion" data-index="${i}" class="${s.criteria[i]?'selected':''}" aria-pressed="${s.criteria[i]}">${s.criteria[i]?'✓ ':''}${esc(c)}</button>`).join('')}</div></div>`:'<div class="strip">생각해 보세요. <strong>나의 선택과 그 이유는?</strong></div>'}`;
+ case 3:return `<div class="row spread"><p class="question">제1회 우리 반 대표 선거</p><span class="badge">규칙 ${s.rules} / 4</span></div><div class="grid two">${rules.map((r,i)=>i<s.rules?`<button class="card rule${s.problems[i]?' selected':''}" data-action="problem" data-index="${i}" ${!s.revealed?'disabled':''}><span class="eyebrow">규칙 ${pad(i+1)}</span><strong>${esc(r.text)}</strong>${s.problems[i]?`<p class="problem">↳ ${esc(r.problem)}</p>`:''}</button>`:lockedCard(i,'다음 규칙을 기다려 주세요')).join('')}</div>${s.rules===4?(s.revealed?`<div class="row spread"><p class="question">무엇이 문제인가요?</p><div class="row"><span>A</span>${controls('A 인정할 수 있다',0,true)}<span>B</span>${controls('B 인정하기 어렵다',1,true)}</div></div>`:`<p class="question">이 선거 결과를 인정할 수 있을까요?</p>${response(['인정할 수 있다','인정하기 어렵다'])}`):'<div class="strip">규칙을 하나씩 살펴보며, 공정한 과정인지 생각해 보세요.</div>'}`;
+ case 4:if(s.mode==='quiz'){const q=quizQuestions[s.quiz],open=s.answers[s.quiz];return `<div class="row spread"><span class="eyebrow">미니 퀴즈</span><span class="badge">${s.quiz+1} / ${quizQuestions.length}</span></div><div class="quiz-box"><p class="question big">“${esc(q.question)}”</p><p>어떤 선거 원칙에 어긋날까요?</p><div class="quiz-options">${principles.map((p,i)=>`<div class="quiz-option${open&&q.answer===i?' correct':''}">${i+1}. ${esc(p.name)}${open&&q.answer===i?' ✓':''}</div>`).join('')}</div>${open?`<div class="concept result-in"><b>정답 · ${esc(principles[q.answer].name)}</b><br>${esc(q.explanation)}</div>`:'<div class="strip subtle">먼저 생각을 말해 주세요.</div>'}</div><div class="row"><button data-action="cards">4원칙 다시 보기</button><button data-action="quizPrev" ${s.quiz===0?'disabled':''}>이전 문제</button><button data-action="quizNext" ${!open||s.quiz===quizQuestions.length-1?'disabled':''}>다음 문제 →</button></div>`;}return `<p class="question">불공정한 규칙을 어떻게 바꿀 수 있을까요?</p><div class="grid four" style="flex:1">${principles.map((p,i)=>i<s.cards?`<article class="card principle result-in"><span class="eyebrow">원칙 ${pad(i+1)}</span><p class="origin">${esc(p.origin)} ↓</p><h2>${esc(p.name)}</h2><p>${esc(p.description)}</p></article>`:lockedCard(i,'원칙을 생각해 보세요')).join('')}</div>`;
+ case 5:return `<div class="row spread"><p class="question">제2회 우리 반 대표 선거</p><span class="badge">종이 모의투표</span></div><div class="polling"><h2>${s.closed?'투표가 종료되었습니다':'투표 진행 중'}</h2>${s.closed?'<p>투표함을 열고 함께 개표해 봅시다.</p>':''}<span>자신이 선택한 한 후보를 투표지에 표시하세요.</span></div><div class="grid four principle-tags">${['모두 한 표','모든 표는 같은 가치','자신이 직접 투표','누구를 뽑았는지는 비밀'].map((t,i)=>`<div class="card">✓ ${t}<div class="small subtle">${principles[i].name}</div></div>`).join('')}</div>`;
+ case 6:if(s.question){const q=s.question-1;return `<div class="strip result-banner">${esc(resultText())}</div><div class="reflection"><span class="eyebrow">질문 ${pad(s.question)}</span><p class="question big">${q===0?(winnerIndices().length===1?'이 후보가 우리 반을 대표할 수 있는 이유는 무엇일까?':'공정하게 선출된 대표가 우리 반을 대표할 수 있는 이유는 무엇일까?'):'대표자가 당선된 뒤 공약을 지키지 않는다면?'}</p>${s.concepts[q]?`<div class="concept result-in"><strong>${q===0?'정당성':'대표자 통제·교체'}</strong>${q===0?'정해진 절차를 거쳐 구성원들의 선택을 받았기 때문이다.':'다음 선거에서 다른 후보를 선택할 수 있다.'}</div>`:'<div class="strip subtle">대표를 뽑은 과정을 떠올려 보세요.</div>'}</div><div><button data-action="backTally">개표판 돌아가기</button></div>`;}return `<div class="row spread"><p class="question">${s.done?esc(resultText()):'한 표씩, 함께 확인합니다.'}</p><span class="badge">집계 합계 ${s.counts.reduce((a,b)=>a+b,0)+s.invalid}표</span></div><div class="grid three">${candidates.map((c,i)=>`<article class="card tally-card${s.done&&winnerIndices().includes(i)?' winner':''}"><span class="badge">${esc(c.name)}</span><h2>${esc(c.title)}</h2><span class="number">${s.counts[i]}<small style="font-size:24px"> 표</small></span><div class="track"><div class="bar" style="width:${tallyWidth(i)}%"></div></div><div class="counts"><button data-action="count" data-index="${i}" data-delta="-1" aria-label="${esc(c.name)} 1표 빼기">−1</button><span class="small">${s.done&&winnerIndices().includes(i)?(winnerIndices().length===1?'✓ 최다 득표':'= 공동 최다'):''}</span><button data-action="count" data-index="${i}" data-delta="1" aria-label="${esc(c.name)} 1표 더하기">+1</button></div></article>`).join('')}</div><div class="row spread"><div class="counts"><span>무효표 ${s.invalid}표</span><button data-action="invalid" data-delta="-1" aria-label="무효표 1표 빼기">−1</button><button data-action="invalid" data-delta="1" aria-label="무효표 1표 더하기">+1</button></div></div>`;
+ case 7:return previewView(s);
+ }}
+function previewView(s){
+ const back=s.step>0&&!s.ended?'<div><button data-action="previewBack">◀ 앞 질문으로</button></div>':'';
+ if(s.step===0)return `<div class="preview-bridge"><span class="eyebrow">오늘의 모의선거 → 실제 선거의 참여</span><div class="strip"><span class="badge">오늘 해 본 일</span><p class="preview-today">${esc(nextLesson.today)}</p></div><p class="question big">${esc(nextLesson.bridge)}</p><div class="strip">공약을 제안하거나 투표 참여를 권하는 것도<br><strong>선거에 참여하는 활동일까요?</strong></div></div>`;
+ if(s.step===1)return `<p class="question">다음 시간, 두 주체의 활동을 탐구합니다.</p><div class="grid two preview-actors textbook-actors"><article class="card"><span class="eyebrow">교과서 185쪽</span><h2>유권자</h2><ul>${nextLesson.voterQuestions.map(q=>`<li>${esc(q)}</li>`).join('')}</ul></article><article class="card selected"><span class="eyebrow">교과서 186쪽</span><h2>정당</h2><ul>${nextLesson.partyQuestions.map(q=>`<li>${esc(q)}</li>`).join('')}</ul></article></div>${back}`;
+ return `<div class="preview-topic"><span class="eyebrow">${s.ended?'오늘 수업 끝 · 다음 시간에 만나요':'다음 차시 · 교과서 185~186쪽'}</span><h2>${esc(nextLesson.topic)}</h2><div class="preview-scope"><span><b>유권자</b>비교 · 선택 · 참여</span><span><b>정당</b>후보 추천 · 공약 제시 · 홍보</span></div></div><div class="strip question">${s.ended?'다음 시간, 선거에 참여하는 활동을 더 넓게 살펴봅시다.':esc(nextLesson.invitation)}</div>${s.ended?'<div><button data-action="previewAgain">예고 다시 보기</button></div>':back}`;
+}
+function revealConfig(){const s=current();switch(state.phase){case 0:return ['시작 →',false];case 1:case 2:return [s.revealed?'결과 공개됨':'결과 공개',s.revealed];case 3:return [s.rules<4?`규칙 ${s.rules+1} 공개`:s.revealed?'문제 카드를 눌러 주세요':'결과 공개',s.revealed];case 4:return [s.mode==='cards'?(s.cards<4?`원칙 ${s.cards+1} 공개`:'미니 퀴즈 시작'):(s.answers[s.quiz]?'정답 공개됨':'정답 공개'),s.mode==='quiz'&&s.answers[s.quiz]];case 5:return [s.closed?'개표하러 가기':'투표 종료',false];case 6:return [!s.done?'개표 완료':s.question===0?'질문 1 공개':!s.concepts[s.question-1]?'개념 공개':s.question===1?'질문 2 공개':'개념 공개됨',s.question===2&&s.concepts[1]];case 7:return [s.ended?'수업 종료됨':s.step===0?'탐구 질문 공개':s.step===1?'다음 차시 공개':'수업 종료',s.ended];}}
+function render(){
+ const oldFocus=document.activeElement;const focusKey=oldFocus?.dataset?.action?{action:oldFocus.dataset.action,index:oldFocus.dataset.index,delta:oldFocus.dataset.delta}:null;
+ $('main').innerHTML=`<div class="heading"><div><div class="phase-code">PHASE ${pad(state.phase)} / 07</div><h1>${phaseTitles[state.phase]}</h1></div><div class="time-budget">권장 ${phaseMinutes[state.phase]}</div></div><section class="content">${phaseView()}</section>`;
+ $('progress').innerHTML=phaseTitles.map((t,i)=>`<div class="step ${i<state.phase?'past':i===state.phase?'current':''}" title="PHASE ${i} ${esc(t)}" ${i===state.phase?'aria-current="step"':''}></div>`).join('');
+ $('main').dataset.phase=state.phase;$('main').dataset.revealed=!!current().revealed;$('main').dataset.done=!!current().done;
+ const [label,disabled]=revealConfig();$('reveal').textContent=label;$('reveal').disabled=disabled;$('prev').disabled=state.phase===0;$('next').disabled=state.phase===7;
+ $('timers').hidden=!state.timerVisible;$('timerToggle').textContent=state.timerVisible?'타이머 숨기기':'타이머 표시';
+ $('note').hidden=!noteOpen;$('noteToggle').setAttribute('aria-expanded',noteOpen);$('note').innerHTML=noteOpen?`<strong>교사 메모 · PHASE ${state.phase}</strong><p>${esc(teacherQuestions[state.phase])}</p><p class="small">단축키: ← → 단계 이동 · Space 공개 · F 전체 화면</p>`:'';
+ updateTimers();
+ if(focusKey&&oldFocus!==document.activeElement){const target=[...document.querySelectorAll('[data-action]')].find(b=>b.dataset.action===focusKey.action&&b.dataset.index===focusKey.index&&b.dataset.delta===focusKey.delta);target?.focus({preventScroll:true});}
+}
+
+// ============================================================
+// 4. 교사 조작 함수
+// ============================================================
+function notify(message,quiet=false){$('toast').classList.toggle('sr-only',quiet);clearTimeout(toastTimeout);$('toast').textContent=message;$('toast').hidden=false;toastTimeout=setTimeout(()=>$('toast').hidden=true,1300);}
+function goPhase(p){if(p<0||p>7)return;tick();state.phase=p;noteOpen=false;save();render();}
+function reveal(){const s=current();switch(state.phase){
+ case 0:goPhase(1);return;
+ case 1:case 2:s.revealed=true;break;
+ case 3:if(s.rules<4)s.rules++;else s.revealed=true;break;
+ case 4:if(s.mode==='cards'){if(s.cards<4)s.cards++;else s.mode='quiz';}else s.answers[s.quiz]=true;break;
+ case 5:if(s.closed){goPhase(6);return;}s.closed=true;break;
+ case 6:if(!s.done){if(!s.counts.some(v=>v>0)){notify('후보에게 투표한 유효표가 없습니다. 집계를 확인하세요.');return;}s.done=true;}else if(s.question===0)s.question=1;else if(!s.concepts[s.question-1])s.concepts[s.question-1]=true;else if(s.question===1)s.question=2;break;
+ case 7:if(s.ended)return;if(s.step<2)s.step++;else {tick();s.ended=true;}break;
+ }save();render();
+}
+function resetPhase(){tick();state.phases[state.phase]=freshPhase(state.phase);state.phaseElapsed[state.phase]=0;noteOpen=false;save();render();notify('현재 PHASE를 초기화했습니다.');}
+function restart(){try{localStorage.removeItem(STORAGE_KEY);}catch{}state=freshState();lastTick=Date.now();noteOpen=false;$('resetDialog').close();save();render();$('reveal').focus();notify('새 수업을 시작합니다.');}
+function action(name,el){const s=current(),i=Number(el?.dataset.index),delta=Number(el?.dataset.delta);switch(name){
+ case 'prev':goPhase(state.phase-1);return;case 'next':goPhase(state.phase+1);return;case 'reveal':reveal();return;
+ case 'count':changeCount(i,delta);return;case 'invalid':s.invalid=Math.max(0,s.invalid+delta);invalidateTally();break;
+ case 'criterion':s.criteria[i]=!s.criteria[i];break;case 'problem':if(!s.revealed)return;s.problems[i]=!s.problems[i];break;
+ case 'cards':s.mode='cards';break;case 'quizNext':if(s.answers[s.quiz]&&s.quiz<quizQuestions.length-1)s.quiz++;break;case 'quizPrev':s.quiz=Math.max(0,s.quiz-1);break;
+ case 'previewBack':s.step=Math.max(0,s.step-1);break;case 'previewAgain':s.ended=false;s.step=0;lastTick=Date.now();break;
+ case 'backTally':s.question=0;break;case 'timer':state.timerVisible=!state.timerVisible;break;case 'note':noteOpen=!noteOpen;break;
+ case 'resetPhase':resetPhase();return;case 'restart':$('resetDialog').showModal();return;case 'cancelReset':$('resetDialog').close();return;case 'confirmReset':restart();return;case 'fullscreen':toggleFullscreen();return;
+ default:return;
+ }save();render();
+}
+
+// ============================================================
+// 5. 개표 기능 — 음수 방지, 수정 후 결과 무효화, 동점 처리
+// ============================================================
+function invalidateTally(){if(state.phase===6){const s=current();s.done=false;s.question=0;s.concepts=[false,false];}}
+function changeCount(i,delta){const s=current();if(!s.counts||!Number.isInteger(i)||i<0||i>=s.counts.length||![-1,1].includes(delta))return;const previous=s.counts[i];s.counts[i]=Math.max(0,previous+delta);if(previous===s.counts[i]){notify('0보다 작게 입력할 수 없습니다.');return;}invalidateTally();save();render();if(state.phase!==6&&!s.revealed)notify(delta>0?'1명 추가했습니다.':'1명 뺐습니다.',true);}
+function winnerIndices(){const counts=state.phases[6].counts,max=Math.max(...counts);return max===0?[]:counts.map((v,i)=>v===max?i:-1).filter(i=>i>=0);}
+function tallyWidth(i){const counts=state.phases[6].counts,total=counts.reduce((a,b)=>a+b,0);return total?counts[i]/total*100:0;}
+function resultText(){const winners=winnerIndices(),s=state.phases[6];if(!winners.length)return '아직 유효표가 없습니다.';if(winners.length>1)return `동점입니다. ${winners.map(i=>candidates[i].name).join(' · ')} 각 ${s.counts[winners[0]]}표 — 당선자를 결정하지 않습니다.`;return `${candidates[winners[0]].name} · ${s.counts[winners[0]]}표 — 우리 반의 선택을 받았습니다.`;}
+
+// ============================================================
+// 6. localStorage — 새로고침 복구 / 저장 불가 시에도 수업 계속
+// ============================================================
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));storageAvailable=true;}catch{storageAvailable=false;}$('storageWarning').hidden=storageAvailable;}
+function restore(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const value=JSON.parse(raw);if(value.version!==1||!Number.isInteger(value.phase)||value.phase<0||value.phase>7||!Array.isArray(value.phases)||value.phases.length!==8)throw Error('invalid state');const clean=freshState();clean.phase=value.phase;clean.timerVisible=value.timerVisible!==false;const validNumber=n=>Number.isFinite(n)&&n>=0&&n<=Number.MAX_SAFE_INTEGER;for(let p=0;p<8;p++){const target=clean.phases[p],source=value.phases[p];if(!source||typeof source!=='object')throw Error('invalid phase');for(const key of Object.keys(target)){const base=target[key],v=source[key];if(Array.isArray(base)){if(!Array.isArray(v)||v.length!==base.length)continue;target[key]=v.map((item,i)=>typeof base[i]==='boolean'?item===true:validNumber(item)?Math.floor(item):0);}else if(typeof base==='boolean')target[key]=v===true;else if(typeof base==='number')target[key]=validNumber(v)?Math.floor(v):base;else if(typeof v==='string')target[key]=v;}clean.phaseElapsed[p]=validNumber(value.phaseElapsed?.[p])?value.phaseElapsed[p]:0;}
+ // 이전 버전의 PHASE 07만 새 예고 화면으로 전환하고, 다른 단계의 집계는 보존합니다.
+ if(value.phases[7].previewRevision!==2)clean.phases[7]=freshPhase(7);
+ clean.phases[7].step=Math.min(2,clean.phases[7].step);
+ if(clean.phases[7].ended)clean.phases[7].step=2;
+ clean.phases[3].rules=Math.min(4,clean.phases[3].rules);if(clean.phases[3].rules<4)clean.phases[3].revealed=false;clean.phases[4].cards=Math.min(4,clean.phases[4].cards);clean.phases[4].quiz=Math.min(quizQuestions.length-1,clean.phases[4].quiz);if(!['cards','quiz'].includes(clean.phases[4].mode))clean.phases[4].mode='cards';clean.phases[6].question=Math.min(2,clean.phases[6].question);if(!clean.phases[6].counts.some(n=>n>0)){clean.phases[6].done=false;clean.phases[6].question=0;}if(!clean.phases[6].done)clean.phases[6].question=0;clean.totalElapsed=validNumber(value.totalElapsed)?value.totalElapsed:0;state=clean;
+ }catch{state=freshState();notify('저장된 진행 상태를 읽지 못해 새 수업으로 열었습니다.');}}
+
+// ============================================================
+// 7. 전체 화면 및 단축키
+// ============================================================
+async function toggleFullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else notify('브라우저의 F11 키로 전체 화면을 사용하세요.');}catch{notify('브라우저의 F11 키로 전체 화면을 사용하세요.');}}
+document.addEventListener('fullscreenchange',()=>{$('fullscreen').textContent=document.fullscreenElement?'전체 화면 해제 ↙':'전체 화면 ↗';});
+document.addEventListener('click',event=>{const button=event.target.closest('button[data-action]');if(button&&!button.disabled)action(button.dataset.action,button);});
+document.addEventListener('keydown',event=>{if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||$('resetDialog').open)return;const target=event.target;if(target.closest('input,textarea,select,[contenteditable="true"]'))return;if(event.key==='ArrowRight'){event.preventDefault();goPhase(state.phase+1);}else if(event.key==='ArrowLeft'){event.preventDefault();goPhase(state.phase-1);}else if(event.code==='Space'){event.preventDefault();if(!$('reveal').disabled)reveal();}else if(event.key.toLowerCase()==='f'){event.preventDefault();toggleFullscreen();}});
+
+// ============================================================
+// 8. 초기 실행
+// ============================================================
+restore();render();save();setInterval(()=>{tick();save();},1000);
+window.addEventListener('pagehide',()=>{tick();save();});
+document.addEventListener('visibilitychange',()=>{tick();save();});
+</script>
+</body>
+</html>
+
+
+
+

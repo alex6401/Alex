@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="내가 만든 HTML 웹앱을 한곳에서 여는 개인 웹앱 보관함">
-  <title>내 웹앱 보관함</title>
+  <title>MinChan's Archive</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <script src="apps.js" defer></script>
@@ -12,15 +12,19 @@
 </head>
 <body>
   <div class="shell">
-    <header><a class="brand" href="index.html"><span class="logo">W</span> WEBAPP / 내 작업실</a><a class="guide-link" href="guide.html">배포 · 추가 안내 ↗</a></header>
+    <header><a class="brand" href="index.html"><span class="logo">M</span> MINCHAN / ARCHIVE</a><a class="guide-link" href="guide.html">웹앱 등록 안내 ↗</a></header>
     <main>
-      <div class="intro"><div><p class="eyebrow">MY APP LIBRARY</p><h1>내 웹앱 보관함<span>.</span></h1><p class="lead">직접 만든 도구들을 한곳에서 꺼내 쓰세요.</p></div><a class="button" href="guide.html#add">+ 웹앱 추가하는 법</a></div>
-      <div class="section-heading"><h2>등록된 웹앱</h2><span id="count" aria-live="polite"></span></div>
+      <div class="intro"><div><p class="eyebrow">A SPACE FOR LEARNING</p><h1>MinChan's <span>Archive</span></h1><p class="lead">사회와 역사, 수업의 가능성을 넓히는 작은 도구들.</p></div><a class="button" href="guide.html#add">+ 웹앱 등록 안내</a></div>
+      <nav class="subjects" aria-label="과목 선택">
+        <button class="subject active" data-subject="사회" aria-pressed="true"><span class="subject-top"><span>01 / SOCIAL STUDIES</span><span>↗</span></span><span class="subject-bottom"><strong>사회</strong><span data-count="사회">0개의 웹앱</span></span><span class="subject-desc">사회 현상을 탐구하고, 함께 참여하는 수업</span></button>
+        <button class="subject" data-subject="역사" aria-pressed="false"><span class="subject-top"><span>02 / HISTORY</span><span>↗</span></span><span class="subject-bottom"><strong>역사</strong><span data-count="역사">0개의 웹앱</span></span><span class="subject-desc">과거를 살피고, 오늘을 이해하는 수업</span></button>
+      </nav>
+      <div class="section-heading"><h2 id="section-title">사회 웹앱</h2><span id="count" aria-live="polite"></span></div>
       <div id="apps" class="grid"></div>
-      <noscript><p>웹앱 목록을 보려면 JavaScript를 켜주세요. <a href="apps/example/index.html">예제 앱 열기</a></p></noscript>
-      <aside class="note"><span class="note-mark">↳</span><div><h2>다음 앱도 이곳에.</h2><p>HTML 파일과 필요한 자료를 GitHub에 저장한 뒤, 목록에 앱 이름과 경로를 추가하세요.</p><a href="guide.html#add">앱 등록 순서 보기 →</a></div></aside>
+      <noscript><p>과목별 목록을 보려면 JavaScript를 켜주세요. <a href="election-lab.html">우리 반 모의선거 LAB 열기</a></p></noscript>
+      <aside class="note"><span class="note-mark">+</span><div><h2>새로운 수업 도구를 아카이브에.</h2><p>스프레드시트에 정리한 웹앱 주소를 과목과 함께 등록하세요.</p><a href="guide.html#add">웹앱 주소 등록 방법 →</a></div></aside>
     </main>
-    <footer><span>직접 만든 도구를 위한 작은 공간</span><span>HTML · CSS · JavaScript</span></footer>
+    <footer><span>MinChan's Archive</span><span>사회 · 역사 / 수업 웹앱 컬렉션</span></footer>
   </div>
 </body>
 </html>
