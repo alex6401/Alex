@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="내가 만든 HTML 웹앱을 한곳에서 여는 개인 웹앱 보관함">
+  <title>내 웹앱 보관함</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="apps.js" defer></script>
+  <script src="hub.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header><a class="brand" href="index.html"><span class="logo">W</span> WEBAPP / 내 작업실</a><a class="guide-link" href="guide.html">배포 · 추가 안내 ↗</a></header>
+    <main>
+      <div class="intro"><div><p class="eyebrow">MY APP LIBRARY</p><h1>내 웹앱 보관함<span>.</span></h1><p class="lead">직접 만든 도구들을 한곳에서 꺼내 쓰세요.</p></div><a class="button" href="guide.html#add">+ 웹앱 추가하는 법</a></div>
+      <div class="section-heading"><h2>등록된 웹앱</h2><span id="count" aria-live="polite"></span></div>
+      <div id="apps" class="grid"></div>
+      <noscript><p>웹앱 목록을 보려면 JavaScript를 켜주세요. <a href="apps/example/index.html">예제 앱 열기</a></p></noscript>
+      <aside class="note"><span class="note-mark">↳</span><div><h2>다음 앱도 이곳에.</h2><p>HTML 파일과 필요한 자료를 GitHub에 저장한 뒤, 목록에 앱 이름과 경로를 추가하세요.</p><a href="guide.html#add">앱 등록 순서 보기 →</a></div></aside>
+    </main>
+    <footer><span>직접 만든 도구를 위한 작은 공간</span><span>HTML · CSS · JavaScript</span></footer>
+  </div>
+</body>
+</html>
