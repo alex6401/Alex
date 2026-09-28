@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 교사용 수정 영역: 아래 자료 객체의 따옴표 안 내용을 수정하세요.
+     항목을 추가할 때는 같은 모양의 한 줄을 복사하세요. 쉼표와 괄호는 유지하세요.
+     날짜는 연도 / 연도-월 / 연도-월-일 형식입니다. 연표는 자동 정렬됩니다.
+     학습지·비상교육 지도서·참고자료와 공식 기관 자료를 바탕으로 보완했습니다.
+     시대 배경: CONTEXT / 참고 카드: REFERENCE_MATERIALS / 출처: SOURCES. summary는 직접 인용이 아닌 한국어 요약입니다.
+     미국 연표의 기존 1778-03-28 참전 항목은 확인 가능한 1778-02-06 동맹 조약 항목으로 교체했습니다. -->
+<script>
+const DATA = {
+  "REVOLUTIONS": [
+    {
+      "id": "gb",
+      "name": "영국 혁명"
+    },
+    {
+      "id": "us",
+      "name": "미국 혁명"
+    },
+    {
+      "id": "fr",
+      "name": "프랑스 혁명"
+    }
+  ],
+  "KEYWORDS": {
+    "gb": [
+      {
+        "term": "찰스 1세",
+        "desc": "절대 왕권을 주장하다 의회와 충돌해 청교도 혁명으로 처형된 왕"
+      },
+      {
+        "term": "청교도",
+        "desc": "영국 국교회 개혁을 주장한 개신교 세력. 의회파의 중심"
+      },
+      {
+        "term": "권리 청원",
+        "desc": "1628년 의회가 왕에게 승인시킨, 의회 동의 없는 과세·자의적 체포 금지 문서"
+      },
+      {
+        "term": "크롬웰",
+        "desc": "청교도 혁명을 이끌고 찰스 1세 처형 후 호국경이 된 인물"
+      },
+      {
+        "term": "공화정",
+        "desc": "왕 없이 통치하는 정치 체제. 찰스 1세 처형 후 수립"
+      },
+      {
+        "term": "항해법",
+        "desc": "1651년 제정, 영국 무역선만 영국 항구를 이용하게 한 법(네덜란드 견제)"
+      },
+      {
+        "term": "네덜란드",
+        "desc": "항해법으로 무역에서 영국과 충돌한 해상 강국"
+      },
+      {
+        "term": "호국경",
+        "desc": "공화정 시기 크롬웰이 맡은 최고 통치자 지위"
+      },
+      {
+        "term": "제임스 2세",
+        "desc": "가톨릭 부활과 전제 정치를 시도하다 명예혁명으로 쫓겨난 왕"
+      },
+      {
+        "term": "윌리엄 3세",
+        "desc": "명예혁명 이후 1689년 메리 2세와 함께 왕위에 오른 통치자",
+        "source": "gbMonarchs"
+      },
+      {
+        "term": "권리 장전",
+        "desc": "1689년, 의회의 권리와 왕권 제한을 명시한 문서"
+      },
+      {
+        "term": "입헌군주제",
+        "desc": "왕이 있으나 헌법·의회로 권력이 제한되는 정치 체제"
+      },
+      {
+        "term": "청교도 혁명",
+        "desc": "왕과 의회의 갈등 속에서 1642~1649년에 전개된 혁명. 의회파가 승리한 뒤 찰스 1세가 처형되고 공화정이 수립되었다.",
+        "source": "textbookGb"
+      },
+      {
+        "term": "명예혁명",
+        "desc": "1688년 제임스 2세가 물러나고, 이듬해 메리 2세와 윌리엄 3세가 공동 왕이 된 정치적 변화. 권리 장전과 함께 입헌군주제의 기반을 마련했다.",
+        "source": "textbookGb"
+      },
+      {
+        "term": "의회파",
+        "desc": "영국 내전에서 의회 편에 선 세력. 크롬웰이 이끈 군대가 왕당파에 승리했다.",
+        "source": "textbookGb"
+      },
+      {
+        "term": "왕당파",
+        "desc": "영국 내전에서 국왕을 지지한 세력. 의회파와 대립했다.",
+        "source": "textbookGb"
+      },
+      {
+        "term": "메리 2세",
+        "desc": "제임스 2세의 딸. 1689년 윌리엄 3세와 공동으로 왕위에 올라 권리 장전을 승인했다.",
+        "source": "textbookGb"
+      }
+    ],
+    "us": [
+      {
+        "term": "건전한 방임 정책",
+        "desc": "영국이 식민지 무역을 크게 간섭하지 않던 이전 시기의 정책"
+      },
+      {
+        "term": "중상주의",
+        "desc": "본국 이익을 위해 식민지를 원료 공급지·시장으로 통제하는 정책"
+      },
+      {
+        "term": "조지 3세",
+        "desc": "식민지에 세금을 강화해 독립전쟁의 원인을 제공한 영국 왕"
+      },
+      {
+        "term": "7년 전쟁",
+        "desc": "영국·프랑스 등이 식민지를 두고 벌인 전쟁(1756~1763)"
+      },
+      {
+        "term": "물품 운동",
+        "desc": "영국 상품에 대한 식민지인들의 불매 운동"
+      },
+      {
+        "term": "보스턴 차 사건",
+        "desc": "1773년 식민지인들이 영국 동인도회사의 차를 바다에 던진 사건"
+      },
+      {
+        "term": "제1차 대륙 회의",
+        "desc": "1774년 식민지 대표들이 영국의 강경 조치에 대응해 모인 회의"
+      },
+      {
+        "term": "렉싱턴",
+        "desc": "1775년 영국군과 식민지 민병대가 처음 충돌한 전투(독립전쟁 시작)"
+      },
+      {
+        "term": "조지 워싱턴",
+        "desc": "대륙군 총사령관으로 독립전쟁을 이끈 뒤 초대 대통령이 된 인물"
+      },
+      {
+        "term": "독립 선언",
+        "desc": "1776년 7월 4일 발표된 독립·천부인권 선언 문서"
+      },
+      {
+        "term": "요크타운",
+        "desc": "1781년 영국군이 항복한, 사실상 독립전쟁의 마지막 결전"
+      },
+      {
+        "term": "제2차 대륙 회의",
+        "desc": "1775년 소집, 독립 선언과 전쟁 수행을 주도한 회의"
+      },
+      {
+        "term": "공화주의",
+        "desc": "국민(대표)이 통치하는 정치 체제를 지향하는 사상"
+      },
+      {
+        "term": "대통령",
+        "desc": "미국 헌법에 따라 도입된 국민이 뽑는 국가 원수 직위"
+      },
+      {
+        "term": "연방주의",
+        "desc": "주의 자치권을 인정하면서도 강한 중앙 정부를 지지하는 입장"
+      },
+      {
+        "term": "자치권",
+        "desc": "지역 주민들이 자신들의 일을 스스로 처리할 수 있는 권리. 식민지 주민들은 영국의 간섭을 자치권 침해로 받아들였다.",
+        "source": "textbookUs"
+      },
+      {
+        "term": "연방제",
+        "desc": "여러 주가 하나의 국가를 이루면서 중앙 정부와 각 주가 권한을 나누는 제도. 미국 헌법은 각 주의 자치를 인정했다.",
+        "source": "textbookUs"
+      },
+      {
+        "term": "국민 주권",
+        "desc": "국가의 주권이 국민에게 있다는 원칙. 미국 헌법에 반영된 정치 원리이다.",
+        "source": "textbookUs"
+      },
+      {
+        "term": "삼권 분립",
+        "desc": "국가의 권력을 입법·행정·사법으로 나누는 원칙. 한쪽에 권력이 집중되는 것을 막기 위한 것이다.",
+        "source": "textbookUs"
+      },
+      {
+        "term": "천부인권",
+        "desc": "사람이라면 태어나면서부터 가지는 권리. 미국 독립 선언은 생명·자유·행복 추구의 권리를 제시했다.",
+        "source": "textbookUs"
+      }
+    ],
+    "fr": [
+      {
+        "term": "제3신분",
+        "desc": "성직자·귀족을 뺀 평민 계층. 인구 대다수이나 세금 부담이 컸음"
+      },
+      {
+        "term": "국민 의회",
+        "desc": "1789년 제3신분 대표들이 결성, 새 헌법 제정을 추진한 의회"
+      },
+      {
+        "term": "테니스코트의 서약",
+        "desc": "1789년 국민의회 대표들이 헌법 제정 전까지 해산하지 않겠다 맹세한 사건"
+      },
+      {
+        "term": "바스티유 감옥 습격",
+        "desc": "1789.7.14, 파리 시민이 전제 왕권의 상징을 공격(혁명의 시작)"
+      },
+      {
+        "term": "인간과 시민의 권리 선언",
+        "desc": "1789.8.26, 자유·평등 등 천부인권을 명시한 선언문"
+      },
+      {
+        "term": "10월 폭동",
+        "desc": "1789.10, 파리 여성들이 베르사유로 행진해 국왕을 파리로 데려온 사건"
+      },
+      {
+        "term": "베르사유",
+        "desc": "프랑스 왕실 궁전이 있던 곳. 10월 폭동의 목적지"
+      },
+      {
+        "term": "바렌",
+        "desc": "1791년 루이 16세가 국외 탈출을 시도하다 붙잡힌 곳(바렌 사건)"
+      },
+      {
+        "term": "루이 16세",
+        "desc": "혁명 중 왕위에서 쫓겨나 1793년 처형된 프랑스 왕"
+      },
+      {
+        "term": "1791년 헌법",
+        "desc": "프랑스 최초의 성문 헌법. 입헌 군주제를 규정"
+      },
+      {
+        "term": "입헌 군주제",
+        "desc": "왕이 있으나 헌법으로 권력이 제한되는 체제(1791년 헌법이 채택)"
+      },
+      {
+        "term": "국민 공회",
+        "desc": "1792년 구성, 공화정 선포와 루이 16세 처형을 주도한 의회"
+      },
+      {
+        "term": "입법 의회",
+        "desc": "1791년 헌법에 따라 구성된, 국민의회 다음 단계의 의회"
+      },
+      {
+        "term": "로베스피에르",
+        "desc": "공포 정치를 주도한 자코뱅파 지도자(1794년 처형)"
+      },
+      {
+        "term": "1793년 헌법",
+        "desc": "국민공회가 제정했으나 시행되지 못한 헌법"
+      },
+      {
+        "term": "혁명 재판소",
+        "desc": "반혁명 혐의자를 재판하던 특별 재판 기구"
+      },
+      {
+        "term": "공안 위원회",
+        "desc": "로베스피에르 중심의, 공포 정치기 국정을 이끈 최고 권력 기구"
+      },
+      {
+        "term": "나폴레옹",
+        "desc": "쿠데타로 권력을 잡고 황제가 된, 유럽 대부분을 정복한 인물"
+      },
+      {
+        "term": "통령 정부",
+        "desc": "나폴레옹이 쿠데타 후 수립한 3인 통령 체제(사실상 1인 지배)"
+      },
+      {
+        "term": "나폴레옹 법전",
+        "desc": "1804년 반포, 법 앞의 평등 등을 명시한 민법전"
+      },
+      {
+        "term": "대륙 봉쇄",
+        "desc": "나폴레옹이 영국을 경제적으로 고립시키려 한 정책(1806년)"
+      },
+      {
+        "term": "총재 정부",
+        "desc": "국민공회 이후(1795년) 수립된 5인 총재 중심의 정부"
+      },
+      {
+        "term": "자유주의",
+        "desc": "개인의 자유·권리와 입헌 정치를 중시하는 사상"
+      },
+      {
+        "term": "민족주의",
+        "desc": "같은 민족의 통일된 국가 수립을 지향하는 사상"
+      },
+      {
+        "term": "빈 체제",
+        "desc": "나폴레옹 이후 유럽이 혁명 이전 질서 회복을 꾀한 국제 체제(1815~)"
+      },
+      {
+        "term": "세력 균형",
+        "desc": "특정 국가가 지나치게 강해지지 않도록 서로 견제한 빈 체제의 원리"
+      },
+      {
+        "term": "제1신분",
+        "desc": "혁명 전 프랑스의 성직자 신분. 귀족인 제2신분과 함께 특권 계층을 이루었다.",
+        "source": "textbookFr"
+      },
+      {
+        "term": "제2신분",
+        "desc": "혁명 전 프랑스의 귀족 신분. 제3신분과 달리 여러 특권을 누렸다.",
+        "source": "textbookFr"
+      },
+      {
+        "term": "삼부회",
+        "desc": "성직자·귀족·평민의 대표가 모이는 신분제 의회. 1789년 재정 문제를 해결하려고 소집되었으나 표결 방식을 두고 갈등이 일어났다.",
+        "source": "textbookFr"
+      },
+      {
+        "term": "계몽사상",
+        "desc": "인간의 이성을 중시하고 불합리한 제도를 바꾸려 한 사상. 왕권과 신분제에 대한 비판에 영향을 주었다.",
+        "source": "textbookFr"
+      },
+      {
+        "term": "공포 정치",
+        "desc": "혁명을 지킨다는 명분으로 반대 세력을 강하게 탄압한 정치. 로베스피에르가 주도했다.",
+        "source": "textbookFr"
+      },
+      {
+        "term": "상퀼로트",
+        "desc": "프랑스 혁명 때 급진적인 변화를 요구한 도시 민중을 가리키는 말. 로베스피에르는 이들의 힘을 바탕으로 혁명을 추진했다.",
+        "source": "textbookFr"
+      }
+    ]
+  },
+  "EVENTS": {
+    "gb": [
+      {
+        "date": "1628-06-07",
+        "title": "권리 청원 제정"
+      },
+      {
+        "date": "1642",
+        "title": "왕당파와 의회파의 내전 시작",
+        "source": "textbookGb"
+      },
+      {
+        "date": "1649",
+        "title": "찰스 1세 처형·공화정 수립",
+        "source": "textbookGb"
+      },
+      {
+        "date": "1651",
+        "title": "항해법 제정"
+      },
+      {
+        "date": "1660",
+        "title": "찰스 2세 왕정복고"
+      },
+      {
+        "date": "1688",
+        "title": "명예혁명",
+        "source": "textbookGb"
+      },
+      {
+        "date": "1689-12-16",
+        "title": "권리 장전 승인"
+      }
+    ],
+    "us": [
+      {
+        "date": "1773-12-16",
+        "title": "보스턴 차 사건"
+      },
+      {
+        "date": "1775-04-19",
+        "title": "렉싱턴 전투(독립전쟁 시작)"
+      },
+      {
+        "date": "1776-07-04",
+        "title": "독립 선언 채택",
+        "source": "usDeclaration"
+      },
+      {
+        "date": "1777-09-19",
+        "title": "사라토가 전투(~10.7)"
+      },
+      {
+        "date": "1778-02-06",
+        "title": "프랑스·미국 동맹 조약 체결",
+        "note": "프랑스의 지원을 공식화한 조약의 체결일입니다. 참전일과 구분해 읽으세요.",
+        "source": "usAlliance"
+      },
+      {
+        "date": "1781",
+        "title": "요크타운 전투"
+      },
+      {
+        "date": "1783",
+        "title": "파리 조약"
+      },
+      {
+        "date": "1787-09-17",
+        "title": "미국 헌법 서명"
+      }
+    ],
+    "fr": [
+      {
+        "date": "1789-05-05",
+        "title": "삼부회 소집"
+      },
+      {
+        "date": "1789-06-17",
+        "title": "국민 의회 구성"
+      },
+      {
+        "date": "1789-06-20",
+        "title": "테니스코트의 서약"
+      },
+      {
+        "date": "1789-07-14",
+        "title": "바스티유 감옥 습격"
+      },
+      {
+        "date": "1789-08-04",
+        "title": "봉건제 폐지 선언"
+      },
+      {
+        "date": "1789-08-26",
+        "title": "인간과 시민의 권리 선언"
+      },
+      {
+        "date": "1789-10-05",
+        "title": "10월 폭동(베르사유 행진)"
+      },
+      {
+        "date": "1791-06-20",
+        "title": "바렌 사건"
+      },
+      {
+        "date": "1791-10",
+        "title": "입법 의회 구성"
+      },
+      {
+        "date": "1792-04-20",
+        "title": "혁명전쟁 시작(대프랑스 동맹과 전쟁)"
+      },
+      {
+        "date": "1792-09-21",
+        "title": "국민 공회 구성"
+      },
+      {
+        "date": "1793-01-21",
+        "title": "루이 16세 처형"
+      },
+      {
+        "date": "1793-10-10",
+        "title": "혁명정부(자코뱅 독재) 선포"
+      },
+      {
+        "date": "1794-07-28",
+        "title": "로베스피에르 처형"
+      },
+      {
+        "date": "1795-10-31",
+        "title": "제1차 총재정부 성립"
+      },
+      {
+        "date": "1799-11-09",
+        "title": "나폴레옹 쿠데타"
+      },
+      {
+        "date": "1804-03",
+        "title": "나폴레옹 법전 반포"
+      },
+      {
+        "date": "1805-10-21",
+        "title": "트라팔가르 해전"
+      },
+      {
+        "date": "1806-11-21",
+        "title": "대륙 봉쇄령"
+      }
+    ]
+  },
+  "REFERENCE_VIDEOS": {
+    "us": {
+      "title": "tvN <벌거벗은 세계사> - 미국 독립 전쟁 편 (2022.3.15, 김봉중 전남대 교수)",
+      "summary": "청교도의 아메리카 이주부터 세금 갈등(보스턴 차 사건 등), 조지 워싱턴이 이끈 독립전쟁 과정을 다룸."
+    },
+    "fr": {
+      "title": "tvN <벌거벗은 세계사> - 프랑스 혁명 특집 1탄 (2021.6.8, 조한욱 한국교원대 명예교수)",
+      "summary": "마리 앙투아네트를 둘러싼 소문(사치 이미지, '빵 대신 케이크' 발언 등)이 실제로는 근거 없는 가짜 뉴스였음을 짚으며 혁명 전후 프랑스 사회를 다룸."
+    }
+  },
+  "SOURCES": {
+    "gbRights": {
+      "name": "영국 의회 · 1689년 권리 장전",
+      "language": "영어",
+      "url": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/2015-parliament-in-the-making/get-involved1/2015-banners-exhibition/ross-sinclair/1689-bill-of-rights-gallery/"
+    },
+    "gbMonarchs": {
+      "name": "영국 의회 · 윌리엄과 메리의 공동 즉위",
+      "language": "영어",
+      "url": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/parliamentaryauthority/revolution/overview/billofrights/"
+    },
+    "usDeclaration": {
+      "name": "미국 국립문서기록관리청 · 독립 선언",
+      "language": "영어",
+      "url": "https://www.archives.gov/milestone-documents/declaration-of-independence"
+    },
+    "usAlliance": {
+      "name": "미국 국립문서기록관리청 · 프랑스와의 동맹 조약",
+      "language": "영어",
+      "url": "https://www.archives.gov/milestone-documents/treaty-of-alliance-with-france"
+    },
+    "frRights": {
+      "name": "프랑스 대통령실 · 인간과 시민의 권리 선언",
+      "language": "프랑스어",
+      "url": "https://www.elysee.fr/la-presidence/la-declaration-des-droits-de-l-homme-et-du-citoyen"
+    },
+    "frVersailles": {
+      "name": "베르사유궁 박물관 · 프랑스 혁명과 베르사유",
+      "language": "영어",
+      "url": "https://en.chateauversailles.fr/discover/history/key-dates/versailles-heart-french-revolution"
+    },
+    "textbookGb": {
+      "name": "비상교육 역사 ① 지도서 187~188쪽 · HWP 참고자료 1-1",
+      "language": "한국어"
+    },
+    "textbookUs": {
+      "name": "비상교육 역사 ① 지도서 189~190쪽 · HWP 참고자료 1-2",
+      "language": "한국어"
+    },
+    "textbookFr": {
+      "name": "비상교육 역사 ① 지도서 191~193쪽 · HWP 참고자료 1-3",
+      "language": "한국어"
+    }
+  },
+  "REFERENCE_MATERIALS": {
+    "gb": [
+      {
+        "title": "권리 장전 · 왕의 권력을 어떻게 제한했을까?",
+        "kind": "사료 핵심 요약",
+        "summary": "1689년 권리 장전은 의회 동의 없이 왕이 세금을 거두거나 평화 시기에 상비군을 유지하는 것을 제한했습니다. 의회의 자유로운 선거와 의회 안에서의 발언 자유도 보장했습니다.",
+        "source": "gbRights"
+      }
+    ],
+    "us": [
+      {
+        "title": "독립 선언 · 정부의 권력은 어디에서 올까?",
+        "kind": "사료 핵심 요약",
+        "summary": "1776년 7월 4일 채택된 독립 선언은 생명·자유·행복 추구를 빼앗을 수 없는 권리로 제시했습니다. 정부의 정당한 권력은 통치받는 사람들의 동의에서 나오며, 권리를 해치는 정부를 바꾸거나 없앨 권리가 있다고 주장했습니다. 이를 바탕으로 영국으로부터의 독립을 선언했습니다.",
+        "source": "usDeclaration"
+      }
+    ],
+    "fr": [
+      {
+        "title": "인권 선언 · 자유와 평등은 어떤 뜻일까?",
+        "kind": "사료 핵심 요약",
+        "summary": "1789년 인간과 시민의 권리 선언은 사람이 자유롭고 권리에 있어 평등하다고 선언했습니다. 주권의 근거는 국민에게 있고, 법은 모든 사람에게 똑같이 적용되어야 한다고 밝혔습니다. 자유는 다른 사람에게 해를 끼치지 않는 범위에서 행동하는 것으로 설명했습니다.",
+        "source": "frRights"
+      },
+      {
+        "title": "테니스코트의 서약과 베르사유 행진",
+        "kind": "사건 배경 요약",
+        "summary": "1789년 6월 20일, 베르사유의 테니스코트에 모인 대표들은 헌법을 제정할 때까지 흩어지지 않겠다고 서약했습니다. 식량난과 왕실에 대한 불만이 커지던 그해 10월 5일에는 여성들이 중심이 된 행렬이 베르사유에 도착했습니다. 다음 날인 10월 6일 왕실 가족은 베르사유를 떠나 파리로 이동했습니다.",
+        "source": "frVersailles"
+      }
+    ]
+  },
+  "SELF_CHECK": [
+    "①충실성: 주어진 제시어(주제어)를 적절하게 활용했는가?",
+    "②역사적 상상력: 내가 정한 인물의 시점과 입장을 일관되고 창의적으로 표현했는가?",
+    "③형식성: 적절한 연월일과 제목을 갖추었는가?",
+    "④타당성: 일기의 사건·배경이 실제 역사적 사실에 부합하는가?",
+    "⑤완성도: 주어진 시간 안에 정해진 분량을 채웠는가?"
+  ],
+  "CONTEXT": {
+    "gb": {
+      "question": "왜 왕과 의회가 충돌했을까?",
+      "summary": "왕의 의회 무시와 청교도 탄압에 반발이 커졌습니다. 내전과 공화정, 왕정복고를 거치며 의회의 권한을 둘러싼 갈등이 이어졌습니다.",
+      "source": "textbookGb",
+      "cards": [
+        {
+          "title": "종교와 정치가 연결된 갈등",
+          "lead": "청교도에게 종교의 문제는 왕권과의 갈등이기도 했습니다.",
+          "points": [
+            "청교도는 영국 국교회에 남아 있던 가톨릭적 의식과 제도를 바꾸려 했습니다.",
+            "왕은 이러한 움직임을 왕권에 대한 도전으로 보았고, 청교도 탄압은 갈등을 키웠습니다.",
+            "의회는 왕이 마음대로 세금을 거두거나 사람을 체포하지 못하도록 요구했습니다."
+          ],
+          "source": "textbookGb"
+        },
+        {
+          "title": "왕정에서 공화정으로, 다시 왕정으로",
+          "lead": "영국 혁명은 한 번의 사건으로 끝나지 않았습니다.",
+          "points": [
+            "1649년: 찰스 1세 처형 뒤 공화정이 수립되었습니다.",
+            "크롬웰은 의회를 해산하고 독재 정치를 펼쳤습니다. 그의 사후에는 왕정이 되살아났습니다.",
+            "1688년 명예혁명과 1689년 권리 장전을 거치며 의회 중심의 입헌군주제 기반이 마련되었습니다."
+          ],
+          "source": "textbookGb"
+        },
+        {
+          "title": "크롬웰을 보는 두 가지 근거",
+          "lead": "혁명을 이끈 공과 독재 정치에 대한 비판을 함께 살펴보세요.",
+          "points": [
+            "의회파를 이끌어 왕당파에 승리하고 공화정 수립에 기여했습니다.",
+            "이후 의회를 해산하고 독재 정치를 펼쳤다는 점에서는 비판받습니다.",
+            "평가의 근거입니다. 당시 모든 사람이 같은 생각을 했다는 뜻은 아닙니다."
+          ],
+          "source": "textbookGb"
+        }
+      ]
+    },
+    "us": {
+      "question": "왜 식민지 주민들이 독립을 요구했을까?",
+      "summary": "식민지 주민들은 자치 경험을 쌓아 왔습니다. 7년 전쟁 이후 영국이 간섭과 과세를 강화하자, 주민들은 자신들의 권리가 침해된다고 여겼습니다.",
+      "source": "textbookUs",
+      "cards": [
+        {
+          "title": "세금과 자치권, 그리고 상인의 생계",
+          "lead": "보스턴 차 사건에는 세금과 무역, 자치권 문제가 얽혀 있었습니다.",
+          "points": [
+            "영국은 전쟁으로 재정이 나빠지자 식민지에 세금을 거두고 간섭을 강화했습니다.",
+            "동인도 회사에 주어진 차 판매 특혜는 식민지의 차 거래 상인들에게도 영향을 주었습니다.",
+            "주민들은 이를 자치권 침해로 받아들였습니다. 차 상자를 버린 행동은 이런 갈등 속에서 나왔습니다."
+          ],
+          "source": "textbookUs"
+        },
+        {
+          "title": "독립 후에는 어떤 나라를 만들려 했을까?",
+          "lead": "연방제·국민 주권·삼권 분립이 헌법에 담겼습니다.",
+          "points": [
+            "연방제: 중앙 정부와 주가 권한을 나누며, 각 주의 자치를 인정합니다.",
+            "국민 주권: 나라의 주권이 국민에게 있다는 원칙입니다.",
+            "삼권 분립: 법을 만드는 입법, 집행하는 행정, 재판하는 사법으로 권력을 나눕니다."
+          ],
+          "source": "textbookUs"
+        }
+      ]
+    },
+    "fr": {
+      "question": "왜 신분제에 대한 불만이 커졌을까?",
+      "summary": "제3신분은 세금의 큰 몫을 부담하면서 정치적 권리는 제한받았습니다. 국가 재정 위기와 계몽사상의 영향 속에서 신분제와 왕권에 대한 비판이 커졌습니다.",
+      "source": "textbookFr",
+      "cards": [
+        {
+          "title": "세 신분과 삼부회의 표결",
+          "lead": "대표의 수만큼이나, 표를 어떻게 세는지가 중요했습니다.",
+          "points": [
+            "제1신분은 성직자, 제2신분은 귀족, 제3신분은 그 밖의 평민입니다.",
+            "신분별로 한 표씩 행사하면 제1·제2신분이 같은 편에 설 때 제3신분은 불리했습니다.",
+            "제3신분은 대표 수를 늘리고 대표 한 사람마다 표를 세자고 요구했습니다.",
+            "국민 의회 결성은 1789년 6월 17일, 테니스코트의 서약은 6월 20일로 구분합니다."
+          ],
+          "source": "textbookFr"
+        },
+        {
+          "title": "사람들은 어디에서 소식을 접했을까?",
+          "lead": "카페와 광장, 낭독과 대화가 여론 형성에 영향을 주었습니다.",
+          "points": [
+            "살롱과 카페에서는 사상과 정치에 관한 토론이 이루어졌습니다.",
+            "공공장소에서 책을 낭독하기도 했고, 민중은 광장과 선술집에서 사회 문제를 이야기했습니다.",
+            "인물의 처지에 따라 접한 정보가 달랐을 수 있습니다. 모든 사람이 같은 소식을 곧바로 알았다고 가정하지 마세요."
+          ],
+          "source": "textbookFr"
+        },
+        {
+          "title": "로베스피에르를 보는 두 가지 근거",
+          "lead": "민중의 요구를 반영한 점과 공포 정치의 문제를 함께 봅니다.",
+          "points": [
+            "도시 민중인 상퀼로트의 요구에 공감하고, 이들의 힘으로 급진적인 혁명을 추진했습니다.",
+            "반대 세력을 강하게 탄압하는 공포 정치는 많은 희생을 낳았습니다.",
+            "혁명을 지켜야 한다는 기대와 탄압에 대한 두려움이 서로 다른 평가의 근거가 될 수 있습니다."
+          ],
+          "source": "textbookFr"
+        },
+        {
+          "title": "나폴레옹을 보는 두 가지 근거",
+          "lead": "제도 정비와 혁명 이념의 확산, 정복 전쟁을 함께 살펴봅니다.",
+          "points": [
+            "혁명의 혼란을 수습하고 교육·행정 제도를 정비했으며 나폴레옹 법전을 편찬했습니다.",
+            "전쟁과 정복은 프랑스 혁명의 이념을 유럽에 퍼뜨리는 계기가 되었습니다.",
+            "한편 황제로 집권하고 정복 전쟁을 벌였다는 점에서 혁명의 계승자로만 평가하기는 어렵습니다."
+          ],
+          "source": "textbookFr"
+        }
+      ]
+    }
+  }
+};
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="중학교 2학년 시민 혁명 일기 쓰기: 용어 사전, 사건 연표, 참고 영상, 사료·배경 자료와 자기 점검표">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>시민 혁명 일기 쓰기 · 역사 참고 노트</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4294'/%3E%3Cpath d='M8 7h16v18H8z' fill='white'/%3E%3Cpath d='M12 12h8m-8 4h8m-8 4h5' stroke='%231d4294' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root{font-family:"맑은 고딕","Malgun Gothic",system-ui,sans-serif;font-size:19px;line-height:1.75;color:#19263d;background:#eef2f7;--blue:#193f86;--muted:#4e5e74;--line:#d4ddea;--tint:#edf3ff}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button,summary{cursor:pointer}button{color:inherit;border:0}a{color:var(--blue);text-underline-offset:4px}h1,h2,h3,p{margin:0}h1,h2,h3,strong,summary{word-break:keep-all;overflow-wrap:anywhere}p,li,td{word-break:keep-all;overflow-wrap:anywhere}h1{font-size:clamp(1.6rem,3vw,2.15rem);line-height:1.4;letter-spacing:-.04em}h2{font-size:1.25rem;line-height:1.5;letter-spacing:-.025em}h3{font-size:1.1rem;line-height:1.6}button,a,summary,input{-webkit-tap-highlight-color:transparent}:focus-visible{outline:3px solid #a94f00;outline-offset:4px}[hidden]{display:none!important}.wrap{max-width:1400px;padding:24px 32px;margin:auto}header{background:white;border-top:5px solid var(--blue)}.eyebrow{font-size:.85rem;font-weight:700;color:var(--blue);margin-bottom:5px}.intro{color:var(--muted);font-size:.95rem;margin-top:8px}
+.tab-bar{background:#fff;border-bottom:1px solid var(--line)}.tab-bar .wrap{padding-top:0;padding-bottom:18px}.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.tab{font-size:1.06rem;font-weight:750;min-height:58px;padding:10px 6px;border:2px solid var(--line);border-radius:8px;background:#f3f6fa;word-break:keep-all}.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}.tab:hover{border-color:var(--blue)}.quick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}.quick a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #bbc9df;border-radius:7px;background:#fff;text-decoration:none;font-size:.88rem;padding:8px 15px;font-weight:650}.quick a:hover{background:var(--tint)}
+.context-strip{border-left:5px solid var(--blue);padding:18px 22px;margin-bottom:24px;background:#e5edfc;border-radius:0 9px 9px 0}.context-strip h2{font-size:1.06rem;margin-bottom:7px}.context-strip>p{max-width:70ch;font-size:.96rem}.context-strip .source-disclosure{margin-top:6px}.context-strip .source-disclosure>summary{padding:5px 0}.grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:24px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:26px;min-width:0}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}.badge{font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:30px;background:var(--tint);color:var(--blue);white-space:nowrap}.hint{font-size:.88rem;color:var(--muted);margin-bottom:20px}.search-label{font-size:.9rem;font-weight:700;display:block;margin:16px 0 8px}.search-box{display:flex;background:#fff;border:2px solid #7f93b0;border-radius:8px;overflow:hidden}.search-box:focus-within{outline:3px solid #a94f00;outline-offset:3px}input[type="search"]{border:0;min-width:0;width:100%;padding:12px;color:#19263d;background:transparent;outline:none}input::placeholder{color:#5a6a80}.clear{background:#eaf0fa;min-width:64px;font-size:.84rem}.results{font-size:.84rem;color:var(--muted);margin:9px 0 16px;min-height:1.75em}.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}.term{border:1px solid #c9d5e6;border-radius:8px;background:#fff;min-width:0}.term>summary{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none;padding:12px 14px;font-weight:700;line-height:1.55;font-size:.97rem}.term>summary::-webkit-details-marker,.background-card>summary::-webkit-details-marker{display:none}.term>summary::after,.background-card>summary::after{content:'＋';color:var(--blue);font-weight:400;font-size:1.15rem;flex-shrink:0}.term[open]>summary::after,.background-card[open]>summary::after{content:'−'}.term[open]{background:#f3f7ff;border-color:#809dce}.term[open]>summary{color:var(--blue)}.term>p{padding:0 14px 16px;font-size:.94rem;line-height:1.85}.term>.source-disclosure{margin:0 14px 8px}.empty{grid-column:1/-1;background:#f1f4f9;padding:22px 16px;border-radius:8px}.right{display:grid;gap:24px;min-width:0}
+table{width:100%;border-collapse:collapse;text-align:left;table-layout:fixed}caption{text-align:left;font-size:.85rem;color:var(--muted);padding:0 0 14px}th{font-size:.84rem;color:var(--muted);background:#edf2f9}th,td{padding:15px 12px;border-bottom:1px solid #dee5ef;vertical-align:top}th:first-child{width:37%}td:first-child{color:var(--blue);font-size:.9rem;font-weight:700;font-variant-numeric:tabular-nums}td{font-size:.96rem;line-height:1.75}tbody tr:nth-child(even){background:#f8fafd}.event-note{font-size:.84rem;color:var(--muted);margin-top:8px}.source-disclosure{margin-top:8px;font-size:.8rem;color:var(--muted)}.source-disclosure>summary{min-height:44px;display:list-item;padding:8px 0;line-height:1.6;width:fit-content;max-width:100%;color:var(--muted);font-weight:500}.source-disclosure>summary:hover{color:var(--blue)}.source-citation{line-height:1.7;overflow-wrap:anywhere;word-break:normal;font-size:.8rem}.source-link{display:inline-flex;align-items:center;min-height:44px;font-size:.82rem;padding:6px 0}.video{border-top:4px solid var(--blue)}.video h3{font-size:1rem;margin:14px 0 10px}.video p{font-size:.94rem;color:var(--muted)}
+.background-panel,.reference-panel,.check-panel{margin-top:26px}.background-grid,.reference-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}.background-card{border:1px solid #bdcde4;border-radius:9px;min-width:0}.background-card>summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;min-height:64px}.background-card>summary strong{display:block;color:var(--blue);font-size:1.02rem}.card-lead{display:block;font-size:.9rem;font-weight:400;color:var(--muted);margin-top:7px;line-height:1.7}.background-card[open]{background:#f7f9fe}.background-body{padding:0 20px 18px;font-size:.96rem}.background-body ul{padding-left:1.3em;margin:0}.background-body li{padding-left:3px;margin-bottom:12px;line-height:1.9}.reference-card{padding:22px;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:8px;min-width:0}.reference-card:only-child{grid-column:1/-1;max-width:900px}.reference-kind{color:var(--blue);font-size:.8rem;font-weight:700;margin-bottom:8px}.reference-card h3{margin-bottom:12px}.reading-text{font-size:.96rem;line-height:1.95}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.check{display:flex;align-items:flex-start;gap:14px;padding:16px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.check input{width:25px;height:25px;flex:0 0 25px;margin:5px 0 0;accent-color:var(--blue)}.check:has(input:checked){background:#edf3ff;border-color:#7897c7}.check strong{display:block;font-size:.96rem}.check span{font-size:.94rem}.check:last-child{grid-column:1/-1}footer{text-align:center;color:var(--muted);font-size:.8rem;padding:26px 0 8px}section,aside{scroll-margin-top:20px}.skip{position:absolute;top:-150px;left:20px;z-index:10;background:#fff;padding:10px}.skip:focus{top:15px}
+@media(max-width:1100px){.terms{grid-template-columns:1fr}.wrap{padding:22px 24px}.panel{padding:22px}.grid{gap:18px}}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.terms{grid-template-columns:repeat(2,minmax(0,1fr))}.background-grid,.reference-grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.context-strip{padding:16px 18px}.reference-card:only-child{max-width:none}}
+@media(max-width:520px){:root{font-size:18px}.wrap{padding:20px 14px}.panel{padding:20px 16px}.terms{grid-template-columns:1fr}.tab-bar .wrap{padding-bottom:14px}.tabs{gap:6px}.tab{font-size:.94rem;min-height:56px}.quick{gap:7px}.quick a{padding:8px 12px;font-size:.85rem}.context-strip h2{font-size:1.04rem}.context-strip>p{font-size:.94rem}.background-card>summary{padding:16px}.background-body{padding:0 16px 16px}.reference-card{padding:18px}th,td{padding:13px 8px}th:first-child{width:36%}td:first-child{font-size:.85rem}.hint{font-size:.9rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#content">자료로 바로 가기</a>
+<header><div class="wrap">
+<p class="eyebrow">중학교 2학년 역사 · 참고 노트</p>
+<h1>시민 혁명 일기 쓰기</h1>
+<p class="intro">필요한 사실을 확인하고, 일기는 나의 생각으로 써 보세요.</p>
+</div></header>
+<div class="tab-bar"><div class="wrap"><div class="tabs" role="tablist" aria-label="혁명 선택" id="tabs"></div></div></div>
+<main class="wrap" id="content">
+<nav class="quick" aria-label="자료 바로 가기"><a href="#dictionary">용어 사전</a><a href="#timeline">사건 연표</a><a href="#background">시대 배경</a><a href="#references" id="references-link">사료 읽기</a><a href="#video" id="video-link">참고 영상</a><a href="#self-check">자기 점검</a></nav>
+<div id="revolution" role="tabpanel" tabindex="0">
+<aside class="context-strip" aria-labelledby="context-question"><h2 id="context-question"></h2><p id="context-summary"></p><div id="context-source"></div></aside>
+<div class="grid">
+<section class="panel" id="dictionary" aria-labelledby="dictionary-title">
+<div class="section-title"><h2 id="dictionary-title">용어 사전</h2><span class="badge" id="term-total"></span></div>
+<p class="hint">궁금한 용어를 누르면 설명이 펼쳐집니다.</p>
+<label class="search-label" for="search">용어 찾기</label>
+<div class="search-box"><input type="search" id="search" placeholder="용어 또는 설명 검색" autocomplete="off" spellcheck="false" aria-controls="terms"><button type="button" class="clear" id="clear" aria-label="검색어 지우기" hidden>지우기</button></div>
+<p class="results" id="results" role="status" aria-live="polite" aria-atomic="true"></p>
+<div class="terms" id="terms"></div>
+</section>
+<div class="right">
+<section class="panel" id="timeline" aria-labelledby="timeline-title">
+<div class="section-title"><h2 id="timeline-title">사건 연표</h2><span class="badge" id="event-total"></span></div>
+<table><caption id="timeline-caption"></caption><thead><tr><th scope="col">날짜</th><th scope="col">사건</th></tr></thead><tbody id="events"></tbody></table>
+</section>
+<section class="panel video" id="video" aria-labelledby="video-heading" hidden><h2 id="video-heading">참고 영상</h2><h3 id="video-title"></h3><p id="video-summary"></p></section>
+</div>
+</div>
+<section class="panel background-panel" id="background" aria-labelledby="background-title"><div class="section-title"><h2 id="background-title">시대 배경</h2><span class="badge" id="background-total"></span></div><p class="hint">관심 있는 제목을 눌러 당시의 생활과 정치, 서로 다른 평가를 살펴보세요.</p><div class="background-grid" id="background-cards"></div></section>
+<section class="panel reference-panel" id="references" aria-labelledby="references-title"><div class="section-title"><h2 id="references-title">사료 읽기</h2><span class="badge" id="reference-total"></span></div><p class="hint">원문을 쉽게 풀어 쓴 요약입니다. 외국어 원문은 ‘출처 확인’에서 인터넷에 연결해 열 수 있습니다.</p><div class="reference-grid" id="reference-cards"></div></section>
+</div>
+<section class="panel check-panel" id="self-check" aria-labelledby="check-title"><h2 id="check-title">일기를 쓰며, 스스로 점검하기</h2><p class="hint">필요할 때 확인하세요. 체크한 내용은 저장하거나 제출하지 않습니다.</p><div class="checks" id="checks"></div></section>
+<footer>학습지 · 비상교육 지도서 및 참고자료 · 공식 기관 자료<br>본문은 인터넷 없이 읽을 수 있습니다.</footer>
+</main>
+<noscript>자료를 보려면 브라우저에서 자바스크립트를 허용해 주세요.</noscript>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+let active = DATA.REVOLUTIONS[0].id;
+const backgroundOpened = Object.fromEntries(DATA.REVOLUTIONS.map(r => [r.id, new Set()]));
+const queries = Object.fromEntries(DATA.REVOLUTIONS.map(r => [r.id, '']));
+const opened = Object.fromEntries(DATA.REVOLUTIONS.map(r => [r.id, new Set()]));
+function node(tag, text, className) {const el = document.createElement(tag); if (text !== undefined) el.textContent = text; if (className) el.className = className; return el;}
+function sourceLink(id) {
+ const source = DATA.SOURCES[id];
+ if (!source) return null;
+ const disclosure = node('details', undefined, 'source-disclosure');
+ disclosure.append(node('summary', '출처 확인'));
+ const citation = node('p', source.name, 'source-citation');
+ disclosure.append(citation);
+ if (source.url && /^https:\/\//.test(source.url)) {
+  const link = node('a', source.language + ' 원문 보기 · 새 창', 'source-link');
+  link.href = source.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+  disclosure.append(link);
+ }
+ return disclosure;
+}
+function renderContext(id) {
+ const context = DATA.CONTEXT[id];
+ $('context-question').textContent = context.question;
+ $('context-summary').textContent = context.summary;
+ $('context-source').replaceChildren(sourceLink(context.source));
+ $('background-total').textContent = context.cards.length + '개';
+ $('background-cards').replaceChildren();
+ context.cards.forEach(card => {
+  const item = node('details', undefined, 'background-card');
+  item.open = backgroundOpened[id].has(card.title);
+  const summary = node('summary');
+  const text = node('span'); text.append(node('strong', card.title), node('span', card.lead, 'card-lead')); summary.append(text);
+  const body = node('div', undefined, 'background-body');
+  const list = node('ul'); card.points.forEach(p => list.append(node('li',p)));
+  body.append(list); const source = sourceLink(card.source); if (source) body.append(source);
+  item.append(summary, body);
+  item.addEventListener('toggle', () => {if (!item.isConnected) return; if(item.open) backgroundOpened[id].add(card.title); else backgroundOpened[id].delete(card.title);});
+  $('background-cards').append(item);
+ });
+}
+function renderReferences(id) {
+ const cards = DATA.REFERENCE_MATERIALS[id] || [];
+ $('references').hidden = !cards.length; $('references-link').hidden = !cards.length;
+ $('reference-total').textContent = cards.length + '개';
+ $('reference-cards').replaceChildren();
+ cards.forEach(card => {
+  const article = node('article', undefined, 'reference-card');
+  article.append(node('p', card.kind, 'reference-kind'), node('h3', card.title), node('p', card.summary, 'reading-text'));
+  const link = sourceLink(card.source); if (link) article.append(link);
+  $('reference-cards').append(article);
+ });
+}
+function dateText(date) {return date.split('-').map((v,i) => String(Number(v)) + ['년','월','일'][i]).join(' ');}
+function renderTerms() {
+ const query = $('search').value.trim().normalize('NFC').toLocaleLowerCase('ko').replace(/\s+/g, '');
+ queries[active] = $('search').value;
+ const all = DATA.KEYWORDS[active] || [];
+ const matches = all.filter(k => (k.term + ' ' + k.desc).normalize('NFC').toLocaleLowerCase('ko').replace(/\s+/g, '').includes(query));
+ $('clear').hidden = !$('search').value;
+ $('results').textContent = query ? `전체 ${all.length}개 중 ${matches.length}개 용어` : `전체 ${all.length}개 용어`;
+ $('terms').replaceChildren();
+ matches.forEach(k => {
+  const item = node('details', undefined, 'term'); item.open = opened[active].has(k.term);
+  const revolutionId = active;
+  item.append(node('summary', k.term), node('p', k.desc));
+  const link = sourceLink(k.source); if (link) item.append(link);
+  item.addEventListener('toggle', () => {if (!item.isConnected) return; if(item.open) opened[revolutionId].add(k.term); else opened[revolutionId].delete(k.term);});
+  $('terms').append(item);
+ });
+ if (!matches.length) $('terms').append(node('p', '일치하는 용어가 없습니다. 검색어를 짧게 바꾸거나 지워 보세요.', 'empty'));
+}
+function selectRevolution(id) {
+ active = id;
+ const selected = DATA.REVOLUTIONS.find(r => r.id === id);
+ document.querySelectorAll('[role="tab"]').forEach(tab => {const on = tab.dataset.id === id; tab.setAttribute('aria-selected', String(on)); tab.tabIndex = on ? 0 : -1;});
+ $('revolution').setAttribute('aria-labelledby', 'tab-' + id);
+ $('search').value = queries[id];
+ $('term-total').textContent = (DATA.KEYWORDS[id] || []).length + '개';
+ renderTerms();
+ const events = [...(DATA.EVENTS[id] || [])].sort((a,b) => a.date.localeCompare(b.date));
+ $('event-total').textContent = events.length + '개';
+ $('timeline-caption').textContent = selected.name + ' · 날짜순';
+ $('events').replaceChildren();
+ events.forEach(e => {const row = node('tr'); const cell = node('td'); const time = node('time', dateText(e.date)); time.dateTime = e.date; cell.append(time); const description = node('td', e.title); if (e.note) description.append(node('p', e.note, 'event-note')); const link = sourceLink(e.source); if (link) description.append(link); row.append(cell, description); $('events').append(row);});
+ renderContext(id);
+ renderReferences(id);
+ const video = DATA.REFERENCE_VIDEOS[id];
+ $('video').hidden = !video; $('video-link').hidden = !video;
+ $('video-title').textContent = video ? video.title : ''; $('video-summary').textContent = video ? video.summary : '';
+}
+DATA.REVOLUTIONS.forEach((r,index) => {
+ const tab = node('button', r.name, 'tab'); tab.type = 'button'; tab.id = 'tab-' + r.id; tab.dataset.id = r.id;
+ tab.setAttribute('role','tab'); tab.setAttribute('aria-controls','revolution');
+ tab.addEventListener('click', () => selectRevolution(r.id));
+ tab.addEventListener('keydown', e => {
+  let next = index;
+  if(e.key === 'ArrowRight') next = (index + 1) % DATA.REVOLUTIONS.length;
+  else if(e.key === 'ArrowLeft') next = (index - 1 + DATA.REVOLUTIONS.length) % DATA.REVOLUTIONS.length;
+  else if(e.key === 'Home') next = 0;
+  else if(e.key === 'End') next = DATA.REVOLUTIONS.length - 1;
+  else return;
+  e.preventDefault(); const target = DATA.REVOLUTIONS[next]; selectRevolution(target.id); $('tab-' + target.id).focus();
+ });
+ $('tabs').append(tab);
+});
+DATA.SELF_CHECK.forEach((text,index) => {
+ const label = node('label', undefined, 'check'); const input = node('input'); input.type = 'checkbox'; input.id = 'check-' + index;
+ const span = node('span'); const divider = text.indexOf(':');
+ if(divider >= 0) {span.append(node('strong', text.slice(0,divider)), document.createTextNode(text.slice(divider+1).trim()));} else span.textContent = text;
+ label.append(input,span); $('checks').append(label);
+});
+$('search').addEventListener('input',renderTerms);
+$('clear').addEventListener('click', () => {$('search').value = ''; renderTerms(); $('search').focus();});
+selectRevolution(active);
+</script>
+</body>
+</html>
