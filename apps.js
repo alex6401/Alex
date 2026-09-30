@@ -9,9 +9,9 @@ window.WEB_APPS = [
   },
   {
     "name": "시민 혁명 일기 쓰기",
-    "description": "영국·미국·프랑스 혁명의 용어, 연표, 시대 배경과 사료를 찾아보고 스스로 점검해요.",
+    "description": "교과서에 맞춘 핵심 제시어 54개와 참고 용어, 연표·사료를 찾아보고 스스로 점검해요.",
     "category": "역사",
     "icon": "역사",
-    "path": "civil-revolution.html"
+    "path": "civil-revolution.html?v=20260930-keywords"
   }
 ];
